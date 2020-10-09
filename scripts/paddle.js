@@ -1,4 +1,4 @@
-class Paddle
+class Paddle // the thing the player controls
 {
     constructor()
     {
