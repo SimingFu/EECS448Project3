@@ -4,7 +4,8 @@ class Ball
     {
         this.x = canvas.width / 2; // initial position is middle of the screen
         this.y = canvas.height / 2;
-        this.vel = {x: 0, y: 5} // initial velocities
+        this.vel = {x: 0, y: 5} // initial velocities, accessed by this.vel.x and this.vel.y
+        this.color = "#00000"; // the color to fill in the ball, default at the moment is black
         this.radius = canvas.height / 30; // radius of ball dependent on screen size
     }
     update()
@@ -20,7 +21,7 @@ class Ball
     {
         ctx.beginPath(); // begin drawing new shape
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2); // create an arc at (this.x, this.y) going from 0 degrees to 2pi degrees (full circle)
-        ctx.fillStyle = "#00000"; // set the fill color to black
+        ctx.fillStyle = this.color; // set the fill color to the ball's color
         ctx.fill(); // fill in the circle
         ctx.closePath(); // end drawing
     }
