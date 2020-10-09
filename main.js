@@ -4,7 +4,7 @@ let ball = new Ball(); // instantiate ball
 gameObjects.push(paddle); // add paddle to array
 gameObjects.push(ball); // add ball to array
 
-function animate()
+function animate() // main game loop occurs here
 {
     requestAnimationFrame(animate); // waits until this animate is done and then calls it again
     ctx.clearRect(0, 0 , window.innerWidth, window.innerHeight); // clears the previous frame
@@ -14,4 +14,4 @@ function animate()
     }
 }
 
-animate();
+animate(); // start the loop
