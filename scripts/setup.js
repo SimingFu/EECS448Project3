@@ -3,7 +3,7 @@ canvas.width = window.innerWidth; // make the canvas' width equal to the width o
 canvas.height = window.innerHeight; // make the canvas' height equal to the height of the user's browser
 let ctx = canvas.getContext('2d'); // a variable that contains the canvas' 2d methods, used for drawing shapes and adding colors
 
-
+let paused = false;
 let mouse = // create variable which will be used to update things based on the mouse's position
 {
     x: undefined,
@@ -22,4 +22,8 @@ window.addEventListener('resize', () => // if the user shrinks/expands their bro
 {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+});
+
+window.addEventListener('keydown', e => {
+    if (e.key === 'Escape') paused = !paused;
 });

@@ -7,10 +7,13 @@ gameObjects.push(ball); // add ball to array
 function animate() // main game loop occurs here
 {
     requestAnimationFrame(animate); // waits until this animate is done and then calls it again
-    ctx.clearRect(0, 0 , window.innerWidth, window.innerHeight); // clears the previous frame
-    for (let i = 0; i < gameObjects.length; i++) // iterate through game objects
+    if (!paused)
     {
-        gameObjects[i].update(); // call update on each object
+        ctx.clearRect(0, 0 , window.innerWidth, window.innerHeight); // clears the previous frame
+        for (let i = 0; i < gameObjects.length; i++) // iterate through game objects
+        {
+            gameObjects[i].update(); // call update on each object
+        }
     }
 }
 
