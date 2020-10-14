@@ -9,9 +9,9 @@ class Ball
     }
     update()
     {
-        let y_pos = this.y + this.vel.y; 
-        if (y_pos + this.radius > canvas.height || y_pos - this.radius < 0) this.vel.y *= -1; //change y direction if it is going off screen
-        
+        let y_pos = this.y + this.vel.y;
+        let x_pos = this.x + this.vel.x;
+        this.detect_collisions(x_pos, y_pos)
         this.x += this.vel.x; //increment x position based on velocity
         this.y += this.vel.y; //increment y position based on velocity
         this.draw(); // every time update is called, redraw the ball in its new position
