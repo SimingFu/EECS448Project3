@@ -40,7 +40,6 @@ var inv = function InvertColors()
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = object_color;
 }
-invertcolorBtn.onclick = inv;
 
 var ani = function animate() // main game loop occurs here
 {
