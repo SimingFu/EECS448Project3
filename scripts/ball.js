@@ -14,7 +14,6 @@ class Ball
     }
     draw()
     {
-        console.log("Draw of ball");
         ctx.beginPath(); // begin drawing new shape
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2); // create an arc at (this.x, this.y) going from 0 degrees to 2pi degrees (full circle)
         ctx.fill(); // fill in the circle

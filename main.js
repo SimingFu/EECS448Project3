@@ -62,5 +62,7 @@ var ani = function animate() // main game loop occurs here
     }
 }
 
+
+
 invertcolorBtn.onclick = inv;
 startBtn.onclick = ani; // start the loop
