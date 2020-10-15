@@ -17,14 +17,14 @@ class Brickset
         {
             for (let j = 0; j < cols; j++)
             {
-                let brick = {x: starting_x_pos + (j * (this.brick_length + this.spacing)), 
+                let brick = {x: starting_x_pos + (j * (this.brick_length + this.spacing)),
                              y: starting_y_pos + (i * (this.brick_height + this.spacing))};
                 this.bricks.push(brick);
             }
         }
     }
     update() {}
-    draw() 
+    draw()
     {
         for (let i = 0; i < this.bricks.length; i++)
         {

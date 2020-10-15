@@ -22,8 +22,8 @@ class Ball
     }
     detect_collisions(paddle, brickset)
     {
-        let y = this.y; 
-        let x = this.x; 
+        let y = this.y;
+        let x = this.x;
         if (y + this.radius >= canvas.height || y - this.radius <= 0) this.vel.y *= -1;
         if (x + this.radius >= canvas.width || x - this.radius <= 0) this.vel.x *= -1;
 
@@ -48,7 +48,7 @@ class Ball
                 brickset.bricks.splice(i, 1);
             }
         }
-        
+
     }
 }
 //Normalize the paddle width from -π to π. At zero there should be no difference in the reflection.
