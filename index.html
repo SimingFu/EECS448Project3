@@ -7,14 +7,17 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <div id="menu screen" class="container">
     <h1>BrickBreak</h1>
     <ul class="menu">
       <li><button id="start" class="submit">Play</button>
       <li><button id="option" class="submit">Option</button>
+      <li><button id="help" class="submit">Help</button>
       <li><button id="about" class="submit">About</button>
     </ul>
   </div>
+
   <div id="setting screen" class="container">
     <h1>Option</h1>
     <ul class="menu">
@@ -22,7 +25,17 @@
       <li><button id="back" class="submit">Back</button>
     </ul>
   </div>
-  
+
+  <div id="win screen" class="container">
+    <h1>You win</h1>
+    <li><button id="newgame"class="submit">New Game</button>
+  </div>
+
+  <div id="lose screen" class="container">
+    <h1>You lose</h1>
+    <li><button id="tryagain"class="submit">Try Again</button>
+  </div>
+
     <canvas id="canvas" class="game"></canvas>
 
     <script src = "scripts/setup.js"></script>

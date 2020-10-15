@@ -1,9 +1,14 @@
 var setting = document.getElementById('setting screen');
 setting.style.display = 'none';
+var win = document.getElementById('win screen');
+win.style.display = 'none';
+var lose = document.getElementById('lose screen');
+lose.style.display = 'none';
+
 var startBtn = document.getElementById('start');
-var invertcolorBtn = document.getElementById('invert_colors');
 var menu = document.getElementById('menu screen');
 var optionBtn = document.getElementById('option');
+var invertcolorBtn = document.getElementById('invert_colors');
 var backBtn = document.getElementById('back');
 
 gameObjects = [] // array to iterate through during game loop
@@ -36,7 +41,6 @@ var inv = function InvertColors()
     ctx.fillStyle = object_color;
 }
 invertcolorBtn.onclick = inv;
-
 
 var ani = function animate() // main game loop occurs here
 {
