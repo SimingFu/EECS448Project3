@@ -1,17 +1,17 @@
 var startBtn = document.getElementById('start');
 var menu = document.getElementById('menu screen');
+
 gameObjects = [] // array to iterate through during game loop
 let paddle = new Paddle(); // instantiate paddle
 let ball = new Ball(); // instantiate ball
+
+const BRICK_ROWS = 5;
+const BRICK_COLS = 8;
+let brickset = new Brickset(BRICK_ROWS, BRICK_COLS, true); //instantiate brickset with number of rows and columns of bricks
+
 gameObjects.push(paddle); // add paddle to array
 gameObjects.push(ball); // add ball to array
-
-function DetectColiisions()
-{
-    if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) ball.vel.y *= -1; //change y direction if it is going off screen
-    if (ball.x + ball.radius > canvas.height || ball.x - ball.radius < 0) ball.vel.x *= -1;
-    console.log(ball.y);
-}
+gameObjects.push(brickset);
 
 var ani = function animate() // main game loop occurs here
 {
