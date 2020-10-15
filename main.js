@@ -66,6 +66,10 @@ var ani = function animate() // main game loop occurs here
         startBtn.onclick = resume;
         menu.style.display = 'block';
     }
+    else
+    {
+        win.style.display = 'block';
+    }
 }
 startBtn.onclick = ani; // start the loop
 

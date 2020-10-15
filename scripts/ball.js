@@ -4,7 +4,7 @@ class Ball
     {
         this.x = canvas.width / 2; // initial position is middle of the screen
         this.y = 25;//canvas.height / 4;
-        this.vel = {x: 5, y: -5} // initial velocities
+        this.vel = {x: 8, y: -8} // initial velocities
         this.radius = canvas.height / 40; // radius of ball dependent on screen size
     }
     update()
