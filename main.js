@@ -4,7 +4,10 @@ var menu = document.getElementById('menu screen');
 gameObjects = [] // array to iterate through during game loop
 let paddle = new Paddle(); // instantiate paddle
 let ball = new Ball(); // instantiate ball
-let brickset = new Brickset(3, 4, true);
+
+const BRICK_ROWS = 5;
+const BRICK_COLS = 8;
+let brickset = new Brickset(BRICK_ROWS, BRICK_COLS, true); //instantiate brickset with number of rows and columns of bricks
 
 gameObjects.push(paddle); // add paddle to array
 gameObjects.push(ball); // add ball to array

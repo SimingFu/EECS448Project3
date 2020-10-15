@@ -10,8 +10,10 @@ class Brickset
         if (spaced) this.spacing = this.brick_length / 4;
         this.bricks = []
 
-        let starting_x_pos = (canvas.width + this.brick_length - (cols * (this.brick_length + this.spacing))) / 2
-        let starting_y_pos = canvas.height / 5;
+        //let starting_x_pos = (canvas.width + this.brick_length - (cols * (this.brick_length + 1.75 * this.spacing))) / 2
+        let row_length = (cols * this.brick_length) + ((cols - 1) * this.spacing);
+        let starting_x_pos = (canvas.width - row_length) / 2;
+        let starting_y_pos = canvas.height / 8;
         for (let i = 0; i < rows; i++)
         {
             for (let j = 0; j < cols; j++)
@@ -27,11 +29,9 @@ class Brickset
         for (let i = 0; i < this.bricks.length; i++)
         {
             let brick = this.bricks[i];
-            console.log(brick.x, brick.y);
             ctx.beginPath();
-            ctx.rect(brick.x, brick.y, this.brick_length, this.brick_height);
             ctx.fillStyle = "#000000";
-            ctx.fill();
+            ctx.fillRect(brick.x, brick.y, this.brick_length, this.brick_height);
             ctx.closePath();
         }
     }
