@@ -13,26 +13,6 @@ gameObjects.push(paddle); // add paddle to array
 gameObjects.push(ball); // add ball to array
 gameObjects.push(brickset);
 
-DetectCollisions = function()
-{
-    console.log(ball.radius, canvas.height);
-    if (ball.y_pos + ball.radius > canvas.height || ball.y_pos - ball.radius < 0) 
-    {
-        ball.vel.y *= -1;
-        console.log(ball.y, ball.vel.y);
-    }
-    let b_length = brickset.brick_length;
-    let b_height = brickset.brick_height;
-    for (let i = 0; i < brickset.bricks.length; i++)
-    {
-        let brick = brickset.bricks[i];
-        if(ball.x > brick.x && ball.xx < brick.x + b_length && ball.y > brick.y && ball.y < brick.y + b_height) 
-        {
-            ball.vel.y *= -1;
-        }
-    }
-}
-
 var ani = function animate() // main game loop occurs here
 {
     menu.style.display = 'none';
@@ -44,8 +24,6 @@ var ani = function animate() // main game loop occurs here
         for (let i = 0; i < gameObjects.length; i++) // iterate through game objects
         {
             gameObjects[i].update(); // call update on each object
-            //gameObjects[]
-            //DetectCollisions();
         }
     }
 }

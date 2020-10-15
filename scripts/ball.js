@@ -25,10 +25,10 @@ class Ball
     }
     detect_collisions(paddle, brickset)
     {
-        let y_pos = this.y + this.vel.y;
-        let x_pos = this.x + this.vel.x;
-        if (y_pos + this.radius > canvas.height || y_pos - this.radius < 0) this.vel.y *= -1;
-        if (x_pos + this.radius > canvas.width || x_pos - this.radius < 0) this.vel.x *= -1;
+        let y_pos = this.y; //+ this.vel.y;
+        let x_pos = this.x; //+ this.vel.x;
+        if (y_pos + this.radius >= canvas.height || y_pos - this.radius <= 0) this.vel.y *= -1;
+        if (x_pos + this.radius >= canvas.width || x_pos - this.radius <= 0) this.vel.x *= -1;
 
         let x_collide_distance = brickset.brick_length / 2 + this.radius;
         let y_collide_distance = brickset.brick_height / 2 + this.radius;
@@ -42,19 +42,12 @@ class Ball
             let x_vector = Math.abs(b_cx - x_pos);
             let y_vector = Math.abs(b_cy - y_pos);
 
-            ctx.beginPath();
-            ctx.moveTo(b_cx, b_cy);
-            ctx.lineTo(x_pos, y_pos);
-            ctx.stroke();
-
-            //console.log(x_collide_distance, y_collide_distance);
             if (x_vector <= x_collide_distance && y_vector <= y_collide_distance)
             {
-                console.log("collide");
-                let prev_x = Math.abs(b_cx - this.x);
-                let prev_y = Math.abs(b_cy - this.y);
+                let prev_x = Math.abs(b_cx - (this.x - this.vel.x));
+                let prev_y = Math.abs(b_cy - (this.y - this.vel.y));
                 if (prev_x > x_collide_distance) this.vel.x *= -1;
-                else this.vel.y *= -1;
+                if (prev_y > y_collide_distance) this.vel.y *= -1;
                 brickset.bricks.splice(i, 1);
             }
           
