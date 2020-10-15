@@ -23,13 +23,13 @@ class Brickset
             }
         }
     }
-    update()
+    update() {}
+    draw() 
     {
         for (let i = 0; i < this.bricks.length; i++)
         {
             let brick = this.bricks[i];
             ctx.beginPath();
-            ctx.fillStyle = "#000000";
             ctx.fillRect(brick.x, brick.y, this.brick_length, this.brick_height);
             ctx.closePath();
         }

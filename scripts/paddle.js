@@ -10,7 +10,9 @@ class Paddle // the thing the player controls
     update()
     {
         if (mouse.x != undefined) this.x = mouse.x - (this.width / 2) // move paddle based on mouse position if it is defined (it is undefined until it moves)
-        ctx.fillStyle = "#00000"; // set fill color to black
+    }
+    draw()
+    {
         ctx.fillRect(this.x, this.y, this.width, this.height); //fill in a rectangle at (this.x, this.y) with dimensions this.width x this.height
     }
 }

@@ -9,26 +9,23 @@ class Ball
     }
     update()
     {
-        //this.detect_collisions()
         this.x += this.vel.x; //increment x position based on velocity
         this.y += this.vel.y; //increment y position based on velocity
-        this.draw(); // every time update is called, redraw the ball in its new position
-
     }
     draw()
     {
+        console.log("Draw of ball");
         ctx.beginPath(); // begin drawing new shape
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2); // create an arc at (this.x, this.y) going from 0 degrees to 2pi degrees (full circle)
-        ctx.fillStyle = "#00000"; // set the fill color to black
         ctx.fill(); // fill in the circle
         ctx.closePath(); // end drawing
     }
     detect_collisions(paddle, brickset)
     {
-        let y_pos = this.y; //+ this.vel.y;
-        let x_pos = this.x; //+ this.vel.x;
-        if (y_pos + this.radius >= canvas.height || y_pos - this.radius <= 0) this.vel.y *= -1;
-        if (x_pos + this.radius >= canvas.width || x_pos - this.radius <= 0) this.vel.x *= -1;
+        let y = this.y; 
+        let x = this.x; 
+        if (y + this.radius >= canvas.height || y - this.radius <= 0) this.vel.y *= -1;
+        if (x + this.radius >= canvas.width || x - this.radius <= 0) this.vel.x *= -1;
 
         let x_collide_distance = brickset.brick_length / 2 + this.radius;
         let y_collide_distance = brickset.brick_height / 2 + this.radius;
@@ -39,19 +36,17 @@ class Ball
             let b_cx = brick.x + (brickset.brick_length / 2);
             let b_cy = brick.y + (brickset.brick_height / 2);
 
-            let x_vector = Math.abs(b_cx - x_pos);
-            let y_vector = Math.abs(b_cy - y_pos);
+            let x_vector = Math.abs(b_cx - x);
+            let y_vector = Math.abs(b_cy - y);
 
             if (x_vector <= x_collide_distance && y_vector <= y_collide_distance)
             {
-                let prev_x = Math.abs(b_cx - (this.x - this.vel.x));
-                let prev_y = Math.abs(b_cy - (this.y - this.vel.y));
+                let prev_x = Math.abs(b_cx - (x - this.vel.x));
+                let prev_y = Math.abs(b_cy - (y - this.vel.y));
                 if (prev_x > x_collide_distance) this.vel.x *= -1;
                 if (prev_y > y_collide_distance) this.vel.y *= -1;
                 brickset.bricks.splice(i, 1);
             }
-          
-
         }
         
     }
