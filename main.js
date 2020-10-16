@@ -14,7 +14,7 @@ var newBtn = document.getElementById('newgame');
 var tryBtn = document.getElementById('tryagain');
 
 
-gameObjects = [] // array to iterate through during game loop
+let gameObjects = [] // array to iterate through during game loop
 let paddle = new Paddle(); // instantiate paddle
 let ball = new Ball(); // instantiate ball
 let page_color = "#FFFFFF";
