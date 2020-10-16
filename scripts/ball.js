@@ -2,15 +2,36 @@ class Ball
 {
     constructor()
     {
-        this.x = canvas.width / 2; // initial position is middle of the screen
-        this.y = 25;//canvas.height / 4;
-        this.vel = {x: 8, y: -8} // initial velocities
         this.radius = canvas.height / 40; // radius of ball dependent on screen size
+        this.start_x = canvas.width / 2; // initial position is middle of the screen
+        this.start_y = canvas.height - (canvas.height / 30) - this.radius;//canvas.height / 4;
+        this.x = this.start_x;
+        this.y = this.start_y;
+        this.vel = {x: 4, y: -8} // initial velocities
+        this.simulate = false;
     }
     update()
     {
-        this.x += this.vel.x; //increment x position based on velocity
-        this.y += this.vel.y; //increment y position based on velocity
+        if (simulate_ball)
+        {
+            let velocity_scale = 8 * (1 / (Math.sqrt(this.vel.x**2 + this.vel.y**2)));
+            
+            this.vel.x = velocity_scale * this.vel.x;
+            this.vel.y = velocity_scale * this.vel.y
+
+            this.x += this.vel.x; //increment x position based on velocity
+            this.y += this.vel.y; //increment y position based on velocity
+            console.log(this.vel.x, this.vel.y);
+        }
+        else
+        {
+            this.lock_to_paddle();
+        }
+    }
+    lock_to_paddle()
+    {
+        this.y = this.start_y;
+        this.x = mouse.x;
     }
     draw()
     {

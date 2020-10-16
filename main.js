@@ -48,6 +48,7 @@ var ani = function animate() // main game loop occurs here
     if (!paused & gameObjects[2].bricks.length > 0)
     {
         menu.style.display = 'none';
+        setting.style.display = 'none';
         ctx.clearRect(0, 0 , window.innerWidth, window.innerHeight); // clears the previous frame
         ctx.fillStyle = page_color;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
