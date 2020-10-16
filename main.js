@@ -8,8 +8,8 @@ let ball = new Ball(); // instantiate ball
 let page_color = "#FFFFFF";
 let object_color = "#000000";
 
-const BRICK_ROWS = 8;
-const BRICK_COLS = 7;
+const BRICK_ROWS = 5;
+const BRICK_COLS = 10;
 let brickset = new Brickset(BRICK_ROWS, BRICK_COLS, true); //instantiate brickset with number of rows and columns of bricks
 
 gameObjects.push(paddle); // add paddle to array
@@ -30,10 +30,6 @@ var inv = function InvertColors()
     ctx.fillStyle = page_color;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = object_color;
-    for (let i = 0; i < gameObjects.length; i++) // iterate through game objects
-    {
-        gameObjects[i].draw();
-    }
 }
 
 var ani = function animate() // main game loop occurs here
