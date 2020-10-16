@@ -1,6 +1,15 @@
+var setting = document.getElementById('setting screen');
+setting.style.display = 'none';
+var win = document.getElementById('win screen');
+win.style.display = 'none';
+var lose = document.getElementById('lose screen');
+lose.style.display = 'none';
+
 var startBtn = document.getElementById('start');
-var invertcolorBtn = document.getElementById('invert_colors');
 var menu = document.getElementById('menu screen');
+var optionBtn = document.getElementById('option');
+var invertcolorBtn = document.getElementById('invert_colors');
+var backBtn = document.getElementById('back');
 
 gameObjects = [] // array to iterate through during game loop
 let paddle = new Paddle(); // instantiate paddle
@@ -34,7 +43,7 @@ var inv = function InvertColors()
 
 var ani = function animate() // main game loop occurs here
 {
-    
+
     requestAnimationFrame(animate); // waits until this animate is done and then calls it again
     if (!paused & gameObjects[2].bricks.length > 0)
     {
@@ -54,9 +63,25 @@ var ani = function animate() // main game loop occurs here
     {
         startBtn.innerHTML = "Resume";
         startBtn.onclick = resume;
-        menu.style.display = 'block'; 
+        menu.style.display = 'block';
+    }
+    else
+    {
+        win.style.display = 'block';
     }
 }
 
 invertcolorBtn.onclick = inv;
 startBtn.onclick = ani; // start the loop
+
+var opt = function Opt(){
+  menu.style.display = 'none';
+  setting.style.display = 'block';
+}
+optionBtn.onclick = opt;
+
+var bak = function Bak(){
+  menu.style.display = 'block';
+  setting.style.display = 'none';
+}
+backBtn.onclick = bak;

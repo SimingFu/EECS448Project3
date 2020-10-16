@@ -4,7 +4,7 @@ class Ball
     {
         this.x = canvas.width / 2; // initial position is middle of the screen
         this.y = 25;//canvas.height / 4;
-        this.vel = {x: 5, y: -5} // initial velocities
+        this.vel = {x: 8, y: -8} // initial velocities
         this.radius = canvas.height / 40; // radius of ball dependent on screen size
     }
     update()
@@ -14,7 +14,6 @@ class Ball
     }
     draw()
     {
-        console.log("Draw of ball");
         ctx.beginPath(); // begin drawing new shape
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2); // create an arc at (this.x, this.y) going from 0 degrees to 2pi degrees (full circle)
         ctx.fill(); // fill in the circle
@@ -22,8 +21,8 @@ class Ball
     }
     detect_collisions(paddle, brickset)
     {
-        let y = this.y; 
-        let x = this.x; 
+        let y = this.y;
+        let x = this.x;
         if (y + this.radius >= canvas.height || y - this.radius <= 0) this.vel.y *= -1;
         if (x + this.radius >= canvas.width || x - this.radius <= 0) this.vel.x *= -1;
 
@@ -48,7 +47,7 @@ class Ball
                 brickset.bricks.splice(i, 1);
             }
         }
-        
+
     }
 }
 //Normalize the paddle width from -π to π. At zero there should be no difference in the reflection.
