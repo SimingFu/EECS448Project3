@@ -10,9 +10,9 @@ var menu = document.getElementById('menu screen');
 var optionBtn = document.getElementById('option');
 var invertcolorBtn = document.getElementById('invert_colors');
 var backBtn = document.getElementById('back');
-var newBtn = document.getElementById('newgame');
+var nextBtn = document.getElementById('nextlevel');
 var tryBtn = document.getElementById('tryagain');
-
+var backmeunBtn = document.getElementById('backmeun');
 
 let gameObjects = [] // array to iterate through during game loop
 let paddle = new Paddle(); // instantiate paddle
@@ -80,7 +80,7 @@ var ani = function animate() // main game loop occurs here
 
 invertcolorBtn.onclick = inv;
 startBtn.onclick = ani; // start the loop
-newBtn.onclick = ani;
+nextBtn.onclick = ani;
 tryBtn.onclick = ani;
 
 
@@ -95,3 +95,9 @@ var bak = function Bak(){
   setting.style.display = 'none';
 }
 backBtn.onclick = bak;
+
+var bmeun = function Bmeun(){
+  win.style.display = 'none';
+  menu.style.display = 'block';
+}
+backmeunBtn.onclick = bmeun;
