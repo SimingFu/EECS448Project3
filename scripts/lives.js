@@ -10,9 +10,9 @@ class Lives {
     this.pad = canvas.width*0.025
   }
 
-  update() {
-    if(this.currentLives > 0) {
-      this.playerLives = this.buildLives()
+  update(currentLives) {
+    if(currentLives >= 0) {
+      this.playerLives = this.buildLives(currentLives)
     } else {
       return
     }
@@ -22,10 +22,10 @@ class Lives {
     this.playerLives.forEach(life => life.draw())
   }
 
-  buildLives() {
+  buildLives(currentLives) {
     let lives = []
 
-    for(let i = 0; i < this.currentLives; i++)
+    for(let i = 0; i < currentLives; i++)
     {
       let position_x = this.position.x+i*(this.position.x+this.pad)
       lives.push(new Life(position_x, this.position.y))

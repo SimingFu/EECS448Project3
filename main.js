@@ -30,6 +30,13 @@ gameObjects.push(ball); // add ball to array
 gameObjects.push(brickset);
 gameObjects.push(playerStatus)
 
+const KEYS = {
+	PADDLE: 0,
+	BALL: 1,
+	BRICKSET: 2,
+	PLAYERSTATUS: 3
+}
+
 var resume = function Resume()
 {
     paused = false;

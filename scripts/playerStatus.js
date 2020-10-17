@@ -10,7 +10,8 @@ class PlayerStatus {
   }
 
   update() {
-    this.statusObjects.forEach(obj => obj.update())
+    //this.statusObjects.forEach(obj => obj.update())
+    this.playerLives.update(this.currentLives)
   }
 
   draw() {
