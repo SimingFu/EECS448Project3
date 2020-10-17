@@ -11,10 +11,9 @@ class Lives {
   }
 
   update(currentLives) {
-    if(currentLives >= 0) {
-      this.playerLives = this.buildLives(currentLives)
-    } else {
-      return
+    this.playerLives = this.buildLives(currentLives)
+    if(currentLives === 0) {
+      lost = true
     }
   }
 

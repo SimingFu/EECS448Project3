@@ -14,7 +14,7 @@ class Ball
     {
         //lose life
         if (this.y + this.radius >= canvas.height) {
-          gameObjects[KEYS.PLAYERSTATUS].currentLives--
+          gameObjects[OBJ_KEYS.PLAYERSTATUS].currentLives--
           this.resetBall()
         }
 
