@@ -9,6 +9,8 @@ class Ball
         this.y = this.start_y;
         this.vel = {x: 4, y: -8} // initial velocities
         simulate_ball = false
+
+        this.arrowAim = new Aim(this.start_x, this.start_y)
     }
     update()
     {
@@ -46,6 +48,8 @@ class Ball
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2); // create an arc at (this.x, this.y) going from 0 degrees to 2pi degrees (full circle)
         ctx.fill(); // fill in the circle
         ctx.closePath(); // end drawing
+
+        this.arrowAim.draw()
     }
     detect_collisions(paddle, brickset)
     {
