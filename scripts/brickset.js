@@ -34,4 +34,23 @@ class Brickset
             ctx.closePath();
         }
     }
+    resetBrick(){
+      this.spacing = this.brick_length / 4;
+      this.bricks = []
+
+      let row_length = (this.cols * this.brick_length) + ((this.cols - 1) * this.spacing);
+      let starting_x_pos = (canvas.width - row_length) / 2;
+      let starting_y_pos = canvas.height / 8;
+      for (let i = 0; i < this.rows; i++)
+      {
+          for (let j = 0; j < this.cols; j++)
+          {
+              let brick = {x: starting_x_pos + (j * (this.brick_length + this.spacing)),
+                           y: starting_y_pos + (i * (this.brick_height + this.spacing))};
+              this.bricks.push(brick);
+          }
+      }
+
+
+    }
 }
