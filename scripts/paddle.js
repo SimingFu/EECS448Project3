@@ -15,4 +15,9 @@ class Paddle // the thing the player controls
     {
         ctx.fillRect(this.x, this.y, this.width, this.height); //fill in a rectangle at (this.x, this.y) with dimensions this.width x this.height
     }
+    resetPaddle(){
+      this.x = canvas.width / 2;  // initial x position
+      this.y = canvas.height - this.height; // initial y position
+
+    }
 }

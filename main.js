@@ -11,9 +11,8 @@ var optionBtn = document.getElementById('option');
 var invertcolorBtn = document.getElementById('invert_colors');
 var backBtn = document.getElementById('back');
 var nextBtn = document.getElementById('nextlevel');
-var tryBtn_w = document.getElementById('tryagain_w');
 var backmainBtn_w = document.getElementById('backmain_w');
-var tryBtn_l = document.getElementById('tryagain_l');
+var tryBtn = document.getElementById('tryagain');
 var backmainBtn_l = document.getElementById('backmain_l');
 
 let gameObjects = [] // array to iterate through during game loop
@@ -85,7 +84,7 @@ var ani = function animate() // main game loop occurs here
         startBtn.onclick = resume;
         menu.style.display = 'block';
     }
-    else if (lost) 
+    else if (lost)
     {
         lose.style.display = 'block';
 		}
@@ -97,6 +96,26 @@ var ani = function animate() // main game loop occurs here
 
 invertcolorBtn.onclick = inv;
 startBtn.onclick = ani; // start the loop
+
+var reset = function gameRestart(){
+
+	ctx.clearRect(0, 0 , window.innerWidth, window.innerHeight); // clears the previous frame
+	gameObjects[2].resetBrick();
+	gameObjects[1].resetBall();
+	gameObjects[0].resetPaddle();
+	gameObjects[3].resetStatus();
+	for (let i = 0; i < gameObjects.length; i++) // iterate through game objects
+	{
+		gameObjects[i].update(); // call update on each object
+
+		gameObjects[i].draw();
+	}
+	lose.style.display = 'none';
+}
+nextBtn.onclick = reset;
+
+tryBtn.onclick = reset;
+
 
 var opt = function Opt(){
   menu.style.display = 'none';
@@ -110,30 +129,14 @@ var bak = function Bak(){
 }
 backBtn.onclick = bak;
 
-var nextl = function Nextl(){ // just for testing
-  window.location.reload();
-}
-nextBtn.onclick = nextl;
-
-var tagn_l = function Tagn_l(){
-  window.location.reload();
-}
-tryBtn_l.onclick = tagn_l;
 
 var bmain_l = function Bmain_l(){ //need to update when add level part
-  window.location.reload(); 
+  window.location.reload();
 }
 backmainBtn_l.onclick = bmain_l;
 
-var tagn_w = function Tagn_w(){
-  window.location.reload();
-}
-tryBtn_w.onclick = tagn_w;
 
 var bmain_w = function Bmain_w(){ //need to update when add level part
-  window.location.reload(); 
+  window.location.reload();
 }
 backmainBtn_w.onclick = bmain_w;
-
-
-
