@@ -1,16 +1,21 @@
 class PlayerStatus {
-  constructor() {
+  constructor(targetScore) {
 
     this.statusObjects = []
 
     this.currentLives = 3
+    this.currentScore = 0
+    this.targetScore = targetScore
+
     this.playerLives = new Lives(this.currentLives)
-    this.score = 0
-    this.statusObjects = [this.playerLives]
+    this.playerScore = new Score(this.currentScore, this.targetScore)
+
+    this.statusObjects = [this.playerLives, this.playerScore]
   }
 
   update() {
     this.playerLives.update(this.currentLives)
+    this.playerScore.update(this.currentScore, this.targetScore)
   }
 
   draw() {
