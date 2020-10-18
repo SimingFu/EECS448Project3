@@ -13,7 +13,7 @@ class Ball
     update()
     {
         //lose life
-        if (this.y + this.radius >= canvas.height) {
+        if (this.y - 10 * this.radius >= canvas.height) {
           gameObjects[OBJ_KEYS.PLAYERSTATUS].currentLives--
           this.resetBall()
         }
