@@ -103,6 +103,7 @@ var reset = function gameRestart(){
 	gameObjects[2].resetBrick();
 	gameObjects[1].resetBall();
 	gameObjects[0].resetPaddle();
+	gameObjects[3].resetStatus();
 	for (let i = 0; i < gameObjects.length; i++) // iterate through game objects
 	{
 		gameObjects[i].update(); // call update on each object
@@ -110,8 +111,11 @@ var reset = function gameRestart(){
 		gameObjects[i].draw();
 	}
 	lose.style.display = 'none';
-
 }
+nextBtn.onclick = reset;
+
+tryBtn.onclick = reset;
+
 
 var opt = function Opt(){
   menu.style.display = 'none';
@@ -125,12 +129,6 @@ var bak = function Bak(){
 }
 backBtn.onclick = bak;
 
-var nextl = function Nextl(){ // just for testing
-  window.location.reload();
-}
-nextBtn.onclick = reset;
-
-tryBtn.onclick = reset;
 
 var bmain_l = function Bmain_l(){ //need to update when add level part
   window.location.reload();
