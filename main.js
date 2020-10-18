@@ -17,6 +17,7 @@ var backmeunBtn = document.getElementById('backmeun');
 let gameObjects = [] // array to iterate through during game loop
 let paddle = new Paddle(); // instantiate paddle
 let ball = new Ball(); // instantiate ball
+let playerStatus = new PlayerStatus()
 let page_color = "#FFFFFF";
 let object_color = "#000000";
 
@@ -27,6 +28,15 @@ let brickset = new Brickset(BRICK_ROWS, BRICK_COLS, true); //instantiate brickse
 gameObjects.push(paddle); // add paddle to array
 gameObjects.push(ball); // add ball to array
 gameObjects.push(brickset);
+gameObjects.push(playerStatus)
+
+const OBJ_KEYS = {
+	PADDLE: 0,
+	BALL: 1,
+	BRICKSET: 2,
+	PLAYERSTATUS: 3
+}
+
 
 var resume = function Resume()
 {
@@ -48,7 +58,7 @@ var ani = function animate() // main game loop occurs here
 {
 
     requestAnimationFrame(animate); // waits until this animate is done and then calls it again
-    if (!paused & gameObjects[2].bricks.length > 0)
+    if (!paused & !lost & gameObjects[2].bricks.length > 0)
     {
         menu.style.display = 'none';
         setting.style.display = 'none';
@@ -66,12 +76,15 @@ var ani = function animate() // main game loop occurs here
         }
         gameObjects[1].detect_collisions(gameObjects[0], gameObjects[2]);
     }
-    else if (paused)
+    else if (paused & !lost)
     {
         startBtn.innerHTML = "Resume";
         startBtn.onclick = resume;
         menu.style.display = 'block';
     }
+		else if (lost) {
+				lose.style.display = 'block'
+		}
     else
     {
         win.style.display = 'block';

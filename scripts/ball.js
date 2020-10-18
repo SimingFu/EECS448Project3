@@ -8,10 +8,16 @@ class Ball
         this.x = this.start_x;
         this.y = this.start_y;
         this.vel = {x: 4, y: -8} // initial velocities
-        this.simulate = false;
+        simulate_ball = false
     }
     update()
     {
+        //lose life
+        if (this.y + this.radius >= canvas.height) {
+          gameObjects[OBJ_KEYS.PLAYERSTATUS].currentLives--
+          this.resetBall()
+        }
+
         if (simulate_ball)
         {
             let velocity_scale = 8 * (1 / (Math.sqrt(this.vel.x**2 + this.vel.y**2)));
@@ -44,7 +50,11 @@ class Ball
     {
         let y = this.y;
         let x = this.x;
-        if (y + this.radius >= canvas.height || y - this.radius <= 0) this.vel.y *= -1;
+
+        //ceiling collision
+        if (y - this.radius <= 0) this.vel.y *= -1;
+
+        //wall collision
         if (x + this.radius >= canvas.width || x - this.radius <= 0) this.vel.x *= -1;
 
         let x_collide_distance = brickset.brick_length / 2 + this.radius;
@@ -69,6 +79,11 @@ class Ball
             }
         }
 
+    }
+
+    resetBall() {
+      simulate_ball = false
+      this.vel = {x: 4, y: -8}
     }
 }
 //Normalize the paddle width from -π to π. At zero there should be no difference in the reflection.
