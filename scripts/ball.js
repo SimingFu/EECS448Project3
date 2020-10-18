@@ -41,6 +41,7 @@ class Ball
     {
         this.y = this.start_y;
         this.x = mouse.x;
+        this.arrowAim.update(this.x, this.y)
     }
     draw()
     {
@@ -49,7 +50,9 @@ class Ball
         ctx.fill(); // fill in the circle
         ctx.closePath(); // end drawing
 
-        this.arrowAim.draw()
+        if(!simulate_ball) {
+          this.arrowAim.draw()
+        }
     }
     detect_collisions(paddle, brickset)
     {
