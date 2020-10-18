@@ -14,17 +14,55 @@ class Aim {
     }
 
     this.lineWidth = canvas.width*canvas.height*0.000004
+
+    this.launchVector = {
+      x: 0,
+      y: 0
+    }
+
+    this.step = 0
+    this.angularConst = 0.05
+    this.minAngle = Math.PI/12
+    this.maxAngle = 11*Math.PI/12
+    this.radians = this.minAngle
+    this.clockwise = false
   }
 
   update(startPos_x, startPos_y) {
     //this.color = updateColor() //TODO
     this.updateLine(startPos_x, startPos_y)
+    this.updateLaunchVector()
     this.updateHead()
   }
 
   draw() {
     this.drawLine()
     this.drawHead()
+  }
+
+  updateLaunchVector() {
+    this.updateAngle()
+    this.launchVector.x = this.length*Math.cos(this.radians)
+    this.launchVector.y = this.length*Math.sin(this.radians)
+    
+    this.endPos.x = this.startPos.x + this.launchVector.x
+    this.endPos.y = this.startPos.y - this.launchVector.y
+  }
+
+  updateAngle() {
+    if(this.radians > this.maxAngle) {
+      this.clockwise = true
+    } else if (this.radians < this.minAngle){
+      this.clockwise = false
+    }
+
+    if(this.clockwise) {
+      this.step--
+    } else {
+      this.step++
+    }
+
+    this.radians = this.step*this.angularConst + this.minAngle
   }
 
   updateLine(startPos_x, startPos_y) {
@@ -35,16 +73,11 @@ class Aim {
 
     this.length = canvas.width*canvas.height*0.00004
 
-    this.endPos = {
-      x: this.startPos.x,
-      y: this.startPos.y - this.length 
-    }
-
     this.lineWidth = canvas.width*canvas.height*0.000004
   }
 
   updateHead() {
-       
+         
   }
 
   drawLine() {

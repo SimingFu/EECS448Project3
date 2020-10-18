@@ -42,6 +42,7 @@ class Ball
         this.y = this.start_y;
         this.x = mouse.x;
         this.arrowAim.update(this.x, this.y)
+        this.vel = this.arrowAim.launchVector
     }
     draw()
     {
