@@ -17,13 +17,14 @@ var backmeunBtn = document.getElementById('backmeun');
 let gameObjects = [] // array to iterate through during game loop
 let paddle = new Paddle(); // instantiate paddle
 let ball = new Ball(); // instantiate ball
-let playerStatus = new PlayerStatus()
 let page_color = "#FFFFFF";
 let object_color = "#000000";
 
 const BRICK_ROWS = 5;
 const BRICK_COLS = 10;
 let brickset = new Brickset(BRICK_ROWS, BRICK_COLS, true); //instantiate brickset with number of rows and columns of bricks
+let targetScore = Math.floor(brickset.bricks.length/4)
+let playerStatus = new PlayerStatus(targetScore)
 
 gameObjects.push(paddle); // add paddle to array
 gameObjects.push(ball); // add ball to array
