@@ -50,7 +50,6 @@ class Aim {
   draw() {
     this.drawLine()
     //this.drawHead()//TODO
-
   }
 
   updateLaunchVector() {
