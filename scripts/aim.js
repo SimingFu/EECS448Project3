@@ -6,7 +6,7 @@ class Aim {
     }
 
     this.length = canvas.width*canvas.height*0.00004
-    this.color = '#00ddff'
+    this.color = '#ff0000'//'#00ddff'
 
     this.endPos = {
       x: this.startPos.x,
@@ -26,18 +26,30 @@ class Aim {
     this.maxAngle = 11*Math.PI/12
     this.radians = this.minAngle
     this.clockwise = false
+
+    this.arrowHeadLeft = {
+      x: 0,
+      y: 0,
+      length: this.length*0.25
+    }
+
+    this.arrowHeadRight = {
+      x: 0,
+      y: 0,
+      length: this.length*0.25
+    }
   }
 
   update(startPos_x, startPos_y) {
     //this.color = updateColor() //TODO
     this.updateLine(startPos_x, startPos_y)
     this.updateLaunchVector()
-    this.updateHead()
+    //this.updateHead() //TODO
   }
 
   draw() {
     this.drawLine()
-    this.drawHead()
+    //this.drawHead()//TODO
   }
 
   updateLaunchVector() {
@@ -76,9 +88,12 @@ class Aim {
     this.lineWidth = canvas.width*canvas.height*0.000004
   }
 
+  /*TODO
   updateHead() {
+    this.arrowHeadLeft.x = this.endPos.x +  
          
   }
+  */
 
   drawLine() {
     ctx.beginPath()
