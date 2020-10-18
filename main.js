@@ -57,7 +57,6 @@ var inv = function InvertColors()
 
 var ani = function animate() // main game loop occurs here
 {
-
     requestAnimationFrame(animate); // waits until this animate is done and then calls it again
     if (!paused & !lost & gameObjects[2].bricks.length > 0)
     {
@@ -100,22 +99,24 @@ startBtn.onclick = ani; // start the loop
 var reset = function gameRestart(){
 
 	ctx.clearRect(0, 0 , window.innerWidth, window.innerHeight); // clears the previous frame
-	gameObjects[2].resetBrick();
-	gameObjects[1].resetBall();
 	gameObjects[0].resetPaddle();
+	gameObjects[1].resetBall();
+	gameObjects[2].resetBrick();
 	gameObjects[3].resetStatus();
 	for (let i = 0; i < gameObjects.length; i++) // iterate through game objects
 	{
 		gameObjects[i].update(); // call update on each object
 
 		gameObjects[i].draw();
-	}
-	lose.style.display = 'none';
+  }
+  lost = false;
 }
 nextBtn.onclick = reset;
 
 tryBtn.onclick = reset;
-
+tryBtn.addEventListener('click', () => {
+  reset;
+})
 
 var opt = function Opt(){
   menu.style.display = 'none';

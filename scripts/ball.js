@@ -30,7 +30,7 @@ class Ball
 
             this.x += this.vel.x; //increment x position based on velocity
             this.y += this.vel.y; //increment y position based on velocity
-            console.log(this.vel.x, this.vel.y);
+            //console.log(this.vel.x, this.vel.y);
         }
         else
         {
