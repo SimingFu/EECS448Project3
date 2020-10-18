@@ -4,8 +4,8 @@ class PlayerStatus {
     this.statusObjects = []
 
     this.currentLives = 3
-    this.currentScore = 369
-    this.addLife_Score = 370
+    this.currentScore = 0
+    this.addLife_Score = 1
 
     this.playerLives = new Lives(this.currentLives)
     this.playerScore = new Score(this.currentScore, this.addLife_Score)
