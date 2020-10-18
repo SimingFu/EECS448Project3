@@ -12,7 +12,7 @@ var invertcolorBtn = document.getElementById('invert_colors');
 var backBtn = document.getElementById('back');
 var nextBtn = document.getElementById('nextlevel');
 var tryBtn = document.getElementById('tryagain');
-var backmeunBtn = document.getElementById('backmeun');
+var backmainBtn = document.getElementById('backmain');
 
 let gameObjects = [] // array to iterate through during game loop
 let paddle = new Paddle(); // instantiate paddle
@@ -110,9 +110,9 @@ var bak = function Bak(){
 }
 backBtn.onclick = bak;
 
-var bmeun = function Bmeun(){
+var bmain = function Bmain(){
   win.style.display = 'none';
-  loss.style.display = 'none';
+  lose.style.display = 'none';
   menu.style.display = 'block';
 }
-backmeunBtn.onclick = bmeun;
+backmainBtn.onclick = bmain;
