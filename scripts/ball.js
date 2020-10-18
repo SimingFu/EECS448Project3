@@ -76,6 +76,7 @@ class Ball
                 if (prev_x > x_collide_distance) this.vel.x *= -1;
                 if (prev_y > y_collide_distance) this.vel.y *= -1;
                 brickset.bricks.splice(i, 1);
+                gameObjects[OBJ_KEYS.PLAYERSTATUS].currentScore++
             }
         }
 
