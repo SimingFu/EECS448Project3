@@ -13,10 +13,11 @@ class Ball
     update()
     {
         //lose life
-        if (this.y + this.radius >= canvas.height) {
-          gameObjects[OBJ_KEYS.PLAYERSTATUS].currentLives--
-          this.resetBall()
-        }
+        /*if (this.y + this.radius > canvas.height)
+        {
+            gameObjects[OBJ_KEYS.PLAYERSTATUS].currentLives--
+            this.resetBall();
+        }*/
 
         if (simulate_ball)
         {
@@ -77,6 +78,23 @@ class Ball
                 if (prev_y > y_collide_distance) this.vel.y *= -1;
                 brickset.bricks.splice(i, 1);
                 gameObjects[OBJ_KEYS.PLAYERSTATUS].currentScore++
+            }
+        }
+
+        //paddle collision
+        if (this.y >= canvas.height - 2*this.radius)
+        {
+            if (this.x < mouse.x - paddle.width/2 || this.x > mouse.x + paddle.width/2)
+            {
+                if (gameObjects[OBJ_KEYS.PLAYERSTATUS].currentLives > 0)
+                {
+                    gameObjects[OBJ_KEYS.PLAYERSTATUS].currentLives--
+                    this.resetBall();
+                }
+            }
+            else 
+            {
+                this.vel.y *= -1;
             }
         }
 
