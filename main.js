@@ -112,6 +112,7 @@ backBtn.onclick = bak;
 
 var bmeun = function Bmeun(){
   win.style.display = 'none';
+  loss.style.display = 'none';
   menu.style.display = 'block';
 }
 backmeunBtn.onclick = bmeun;
