@@ -4,6 +4,7 @@ canvas.height = window.innerHeight; // make the canvas' height equal to the heig
 let ctx = canvas.getContext('2d'); // a variable that contains the canvas' 2d methods, used for drawing shapes and adding colors
 
 let paused = false;
+let lost = false;
 let simulate_ball = false;
 let mouse = // create variable which will be used to update things based on the mouse's position
 {
