@@ -1,28 +1,15 @@
-var setting = document.getElementById('setting screen');
-setting.style.display = 'none';
-var win = document.getElementById('win screen');
-win.style.display = 'none';
-var lose = document.getElementById('lose screen');
-lose.style.display = 'none';
 
-var startBtn = document.getElementById('start');
-var menu = document.getElementById('menu screen');
-var optionBtn = document.getElementById('option');
-var invertcolorBtn = document.getElementById('invert_colors');
-var backBtn = document.getElementById('back');
-var nextBtn = document.getElementById('nextlevel');
-var backmainBtn_w = document.getElementById('backmain_w');
-var tryBtn = document.getElementById('tryagain');
-var backmainBtn_l = document.getElementById('backmain_l');
-
-let gameObjects = [] // array to iterate through during game loop
-let paddle = new Paddle(); // instantiate paddle
-let ball = new Ball(); // instantiate ball
 let page_color = "#FFFFFF";
 let object_color = "#000000";
 
 const BRICK_ROWS = 5;
-const BRICK_COLS = 10;
+const BRICK_COLS = 8;
+const PADDLE_WIDTH = canvas.width / 6;
+const PADDLE_HEIGHT = canvas.height / 30;
+
+let gameObjects = [] // array to iterate through during game loop
+let paddle = new Paddle(); // instantiate paddle
+let ball = new Ball(); // instantiate ball
 let brickset = new Brickset(BRICK_ROWS, BRICK_COLS, true); //instantiate brickset with number of rows and columns of bricks
 let targetScore = Math.floor(brickset.bricks.length/4)
 let playerStatus = new PlayerStatus(targetScore)
