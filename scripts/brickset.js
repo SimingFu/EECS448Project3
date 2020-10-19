@@ -40,7 +40,7 @@ class Brickset
 
       let row_length = (this.cols * this.brick_length) + ((this.cols - 1) * this.spacing);
       let starting_x_pos = (canvas.width - row_length) / 2;
-      let starting_y_pos = canvas.height / 8;
+      let starting_y_pos = canvas.height / 10;
       for (let i = 0; i < this.rows; i++)
       {
           for (let j = 0; j < this.cols; j++)
@@ -50,7 +50,5 @@ class Brickset
               this.bricks.push(brick);
           }
       }
-
-
     }
 }
