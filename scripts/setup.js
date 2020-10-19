@@ -29,7 +29,16 @@ let mouse = // create variable which will be used to update things based on the 
 {
     x: undefined,
     y: undefined
-}
+};
+
+window.addEventListener('keydown', e => {
+    if(e.key == 'ArrowLeft'){
+        mouse.x = mouse.x - 30;
+    }
+    if (e.key == 'ArrowRight') {
+        mouse.x = mouse.x + 30;
+    }
+})
 
 window.addEventListener('mousemove', // window will call this function every time the mouse moves, updating its position
     function(e) 
