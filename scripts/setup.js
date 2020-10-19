@@ -3,6 +3,25 @@ canvas.width = window.innerWidth; // make the canvas' width equal to the width o
 canvas.height = window.innerHeight; // make the canvas' height equal to the height of the user's browser
 let ctx = canvas.getContext('2d'); // a variable that contains the canvas' 2d methods, used for drawing shapes and adding colors
 
+//assign variables to html elements
+var setting = document.getElementById('setting screen');
+setting.style.display = 'none';
+var win = document.getElementById('win screen');
+win.style.display = 'none';
+var lose = document.getElementById('lose screen');
+lose.style.display = 'none';
+
+var startBtn = document.getElementById('start');
+var menu = document.getElementById('menu screen');
+var optionBtn = document.getElementById('option');
+var invertcolorBtn = document.getElementById('invert_colors');
+var backBtn = document.getElementById('back');
+var nextBtn = document.getElementById('nextlevel');
+var backmainBtn_w = document.getElementById('backmain_w');
+var tryBtn = document.getElementById('tryagain');
+var backmainBtn_l = document.getElementById('backmain_l');
+
+
 let paused = false;
 let lost = false;
 let simulate_ball = false;
@@ -27,6 +46,8 @@ window.addEventListener('resize', () => // if the user shrinks/expands their bro
 });
 
 window.addEventListener('keydown', e => {
+  
     if (e.key === 'Escape') paused = !paused;
     if (e.code == 'Space') simulate_ball = true;
+
 });
