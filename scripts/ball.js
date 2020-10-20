@@ -4,30 +4,25 @@ class Ball
     {
         this.radius = canvas.height / 40; // radius of ball dependent on screen size
         this.start_x = canvas.width / 2; // initial position is middle of the screen
-        this.start_y = canvas.height - (canvas.height / 30) - this.radius;//canvas.height / 4;
+        this.start_y = canvas.height - PADDLE_HEIGHT - this.radius - 1; // 1 pixel above paddle to avoid collision
         this.x = this.start_x;
         this.y = this.start_y;
-        this.vel = {x: 4, y: -8} // initial velocities
+        this.vel = {x: 4, y: 8} // initial velocities
         simulate_ball = false
+        this.unit_vector = canvas.height / 100;
+        this.arrowAim = new Aim(this.start_x, this.start_y);
     }
     update()
     {
-        //lose life
-        if (this.y - 10 * this.radius >= canvas.height) {
-          gameObjects[OBJ_KEYS.PLAYERSTATUS].currentLives--
-          this.resetBall()
-        }
-
         if (simulate_ball)
         {
-            let velocity_scale = 8 * (1 / (Math.sqrt(this.vel.x**2 + this.vel.y**2)));
+            let velocity_scale = this.unit_vector * (1 / (Math.sqrt(this.vel.x**2 + this.vel.y**2)));
             
             this.vel.x = velocity_scale * this.vel.x;
             this.vel.y = velocity_scale * this.vel.y
 
             this.x += this.vel.x; //increment x position based on velocity
             this.y += this.vel.y; //increment y position based on velocity
-            console.log(this.vel.x, this.vel.y);
         }
         else
         {
@@ -37,7 +32,10 @@ class Ball
     lock_to_paddle()
     {
         this.y = this.start_y;
-        this.x = mouse.x;
+        this.x = Math.min(Math.max(mouse.x, PADDLE_WIDTH / 2), canvas.width - PADDLE_WIDTH / 2);
+        this.arrowAim.update(this.x, this.y)
+        this.vel = this.arrowAim.launchVector
+        this.vel.y *= -1;
     }
     draw()
     {
@@ -45,6 +43,10 @@ class Ball
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2); // create an arc at (this.x, this.y) going from 0 degrees to 2pi degrees (full circle)
         ctx.fill(); // fill in the circle
         ctx.closePath(); // end drawing
+
+        if(!simulate_ball) {
+          this.arrowAim.draw()
+        }
     }
     detect_collisions(paddle, brickset)
     {
@@ -63,13 +65,13 @@ class Ball
         for (let i = 0; i < brickset.bricks.length; i++)
         {
             let brick = brickset.bricks[i];
-            let b_cx = brick.x + (brickset.brick_length / 2);
-            let b_cy = brick.y + (brickset.brick_height / 2);
+            let b_cx = brick.x + (brickset.brick_length / 2); // center of brick's x position
+            let b_cy = brick.y + (brickset.brick_height / 2); // center of y position
 
-            let x_vector = Math.abs(b_cx - x);
+            let x_vector = Math.abs(b_cx - x); // distance from center of brick's x to ball
             let y_vector = Math.abs(b_cy - y);
 
-            if (x_vector <= x_collide_distance && y_vector <= y_collide_distance)
+            if (x_vector <= x_collide_distance && y_vector <= y_collide_distance) // if both vectors are less than or equal to the max distance of a collision, there must be a collision
             {
                 let prev_x = Math.abs(b_cx - (x - this.vel.x));
                 let prev_y = Math.abs(b_cy - (y - this.vel.y));
@@ -80,12 +82,28 @@ class Ball
             }
         }
 
+        //paddle collision
+        if (this.y >= canvas.height - paddle.height - this.radius && this.y < canvas.height - paddle.height * 0.85)
+        {
+            if (this.x + (this.radius / 2) >= paddle.x && this.x <= paddle.x + paddle.width)
+            {
+                console.log("hit paddle");
+                this.y = canvas.height - paddle.height - this.radius;
+                this.vel.y *= -1;
+                let mid_paddle = paddle.width / 2;
+                this.vel.x = (3/4 * this.unit_vector) * ((this.x - (paddle.x + mid_paddle)) / mid_paddle);
+            }
+        }
+        //lose life
+        if (this.y - 2 * this.radius > canvas.height)
+        {
+            gameObjects[OBJ_KEYS.PLAYERSTATUS].currentLives--
+            if (gameObjects[OBJ_KEYS.PLAYERSTATUS].currentLives > 0) this.resetBall();
+        }
     }
-
     resetBall() {
       simulate_ball = false
-      this.vel = {x: 4, y: -8}
+      this.vel = {x: 4, y: 8}
     }
 }
-//Normalize the paddle width from -π to π. At zero there should be no difference in the reflection.
-//sin(-π) is -1, sin(0) is 0, and sin(π) is 1.
+

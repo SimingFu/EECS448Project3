@@ -1,27 +1,15 @@
-var setting = document.getElementById('setting screen');
-setting.style.display = 'none';
-var win = document.getElementById('win screen');
-win.style.display = 'none';
-var lose = document.getElementById('lose screen');
-lose.style.display = 'none';
 
-var startBtn = document.getElementById('start');
-var menu = document.getElementById('menu screen');
-var optionBtn = document.getElementById('option');
-var invertcolorBtn = document.getElementById('invert_colors');
-var backBtn = document.getElementById('back');
-var nextBtn = document.getElementById('nextlevel');
-var tryBtn = document.getElementById('tryagain');
-var backmeunBtn = document.getElementById('backmeun');
-
-let gameObjects = [] // array to iterate through during game loop
-let paddle = new Paddle(); // instantiate paddle
-let ball = new Ball(); // instantiate ball
 let page_color = "#FFFFFF";
 let object_color = "#000000";
 
 const BRICK_ROWS = 5;
-const BRICK_COLS = 10;
+const BRICK_COLS = 8;
+const PADDLE_WIDTH = canvas.width / 6;
+const PADDLE_HEIGHT = canvas.height / 30;
+
+let gameObjects = [] // array to iterate through during game loop
+let paddle = new Paddle(); // instantiate paddle
+let ball = new Ball(); // instantiate ball
 let brickset = new Brickset(BRICK_ROWS, BRICK_COLS, true); //instantiate brickset with number of rows and columns of bricks
 let targetScore = Math.floor(brickset.bricks.length/4)
 let playerStatus = new PlayerStatus(targetScore)
@@ -29,7 +17,7 @@ let playerStatus = new PlayerStatus(targetScore)
 gameObjects.push(paddle); // add paddle to array
 gameObjects.push(ball); // add ball to array
 gameObjects.push(brickset);
-gameObjects.push(playerStatus)
+gameObjects.push(playerStatus);
 
 const OBJ_KEYS = {
 	PADDLE: 0,
@@ -37,7 +25,6 @@ const OBJ_KEYS = {
 	BRICKSET: 2,
 	PLAYERSTATUS: 3
 }
-
 
 var resume = function Resume()
 {
@@ -57,7 +44,6 @@ var inv = function InvertColors()
 
 var ani = function animate() // main game loop occurs here
 {
-
     requestAnimationFrame(animate); // waits until this animate is done and then calls it again
     if (!paused & !lost & gameObjects[2].bricks.length > 0)
     {
@@ -70,10 +56,11 @@ var ani = function animate() // main game loop occurs here
         ctx.fillStyle = page_color;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = object_color;
+
         for (let i = 0; i < gameObjects.length; i++) // iterate through game objects
         {
-            gameObjects[i].update(); // call update on each object
-            gameObjects[i].draw();
+          gameObjects[i].update(); // call update on each object
+          gameObjects[i].draw();
         }
         gameObjects[1].detect_collisions(gameObjects[0], gameObjects[2]);
     }
@@ -83,8 +70,9 @@ var ani = function animate() // main game loop occurs here
         startBtn.onclick = resume;
         menu.style.display = 'block';
     }
-		else if (lost) {
-				lose.style.display = 'block'
+    else if (lost)
+    {
+        lose.style.display = 'block';
 		}
     else
     {
@@ -94,9 +82,28 @@ var ani = function animate() // main game loop occurs here
 
 invertcolorBtn.onclick = inv;
 startBtn.onclick = ani; // start the loop
-nextBtn.onclick = ani;
-tryBtn.onclick = ani;
 
+var reset = function gameRestart(){
+
+	ctx.clearRect(0, 0 , window.innerWidth, window.innerHeight); // clears the previous frame
+	gameObjects[0].resetPaddle();
+	gameObjects[1].resetBall();
+	gameObjects[2].resetBrick();
+	gameObjects[3].resetStatus();
+	for (let i = 0; i < gameObjects.length; i++) // iterate through game objects
+	{
+		gameObjects[i].update(); // call update on each object
+
+		gameObjects[i].draw();
+  }
+  lost = false;
+}
+nextBtn.onclick = reset;
+
+tryBtn.onclick = reset;
+tryBtn.addEventListener('click', () => {
+  reset;
+})
 
 var opt = function Opt(){
   menu.style.display = 'none';
@@ -110,8 +117,14 @@ var bak = function Bak(){
 }
 backBtn.onclick = bak;
 
-var bmeun = function Bmeun(){
-  win.style.display = 'none';
-  menu.style.display = 'block';
+
+var bmain_l = function Bmain_l(){ //need to update when add level part
+  window.location.reload();
 }
-backmeunBtn.onclick = bmeun;
+backmainBtn_l.onclick = bmain_l;
+
+
+var bmain_w = function Bmain_w(){ //need to update when add level part
+  window.location.reload();
+}
+backmainBtn_w.onclick = bmain_w;
