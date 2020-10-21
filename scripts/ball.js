@@ -23,6 +23,10 @@ class Ball
 
             this.x += this.vel.x; //increment x position based on velocity
             this.y += this.vel.y; //increment y position based on velocity
+            if(numCurrentBricks <= totalBricks/2)
+            {
+                this.unit_vector = canvas.height / 70;
+            }
         }
         else
         {
