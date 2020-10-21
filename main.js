@@ -44,15 +44,6 @@ var inv = function InvertColors()
     ctx.fillStyle = object_color;
 }
 
-let speedUp = false;
-
-function modifySpeed(){
-  if(numCurrentBricks <= totalBricks-2){
-    speedUp = true;
-    alert("SPEEDUP!");
-  }
-}
-
 var ani = function animate() // main game loop occurs here
 {
     requestAnimationFrame(animate); // waits until this animate is done and then calls it again
