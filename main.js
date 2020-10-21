@@ -7,6 +7,8 @@ const BRICK_COLS = 8;
 const PADDLE_WIDTH = canvas.width / 6;
 const PADDLE_HEIGHT = canvas.height / 30;
 
+let totalBricks = BRICK_ROWS * BRICK_COLS; // Keeps track of total number of bricks
+let numCurrentBricks = totalBricks; // Initialize to whatever the initial number of bricks is
 let gameObjects = [] // array to iterate through during game loop
 let paddle = new Paddle(); // instantiate paddle
 let ball = new Ball(); // instantiate ball
@@ -40,6 +42,15 @@ var inv = function InvertColors()
     ctx.fillStyle = page_color;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = object_color;
+}
+
+let speedUp = false;
+
+function modifySpeed(){
+  if(numCurrentBricks <= totalBricks-2){
+    speedUp = true;
+    alert("SPEEDUP!");
+  }
 }
 
 var ani = function animate() // main game loop occurs here
