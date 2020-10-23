@@ -1,5 +1,9 @@
 class Ball
 {
+
+    /*
+    * @Post: initializes ball object
+    */
     constructor()
     {
         this.radius = canvas.height / 40; // radius of ball dependent on screen size
@@ -12,6 +16,11 @@ class Ball
         this.unit_vector = canvas.height / 100;
         this.arrowAim = new Aim(this.start_x, this.start_y);
     }
+
+    /*
+    * @Pre: assumes ball is initialized
+    * @Post: updates balls position, and velocity
+    */
     update()
     {
         if (simulate_ball)
@@ -33,6 +42,11 @@ class Ball
             this.lock_to_paddle();
         }
     }
+
+    /*
+    * @Pre: assumes paddle and ball are initialized
+    * @Post: puts ball on the paddle to start game for initial aim and launch
+    */
     lock_to_paddle()
     {
         this.y = this.start_y;
@@ -41,6 +55,11 @@ class Ball
         this.vel = this.arrowAim.launchVector
         this.vel.y *= -1;
     }
+
+    /*
+    * @Pre: ball is initialized
+    * @Post: draws the ball on the screen based on location
+    */
     draw()
     {
         ctx.beginPath(); // begin drawing new shape
@@ -52,6 +71,13 @@ class Ball
           this.arrowAim.draw()
         }
     }
+
+    /*
+    * @Pre: assumes ball is initialized
+    * @Post: checks for collisions against the paddle and the bricks
+    * @Param: paddle: Object the user controls that the ball bounces off of. 
+    *         brickset: set of bricks that the ball will bounce off of.
+    */
     detect_collisions(paddle, brickset)
     {
         let y = this.y;
@@ -105,6 +131,11 @@ class Ball
             if (gameObjects[OBJ_KEYS.PLAYERSTATUS].currentLives > 0) this.resetBall();
         }
     }
+
+    /*
+    * @Pre: assumes ball is initialized
+    * @Post: resets ball to initial velocity
+    */
     resetBall() {
       simulate_ball = false
       this.vel = {x: 4, y: 8}
