@@ -28,7 +28,7 @@ const OBJ_KEYS = {
 	PLAYERSTATUS: 3
 }
 
-/* 
+/*
 * @Pre: game is currently paused
 * @Post: game will be unpaused and menu will disappear
 */
@@ -141,12 +141,19 @@ var bak = function Bak(){
 }
 backBtn.onclick = bak;
 
+/*
+* @Pre: menu is currently open
+* @Post: reload the page and back to the main menu
+*/
 var bmain_l = function Bmain_l(){ //need to update when add level part
   window.location.reload();
 }
 backmainBtn_l.onclick = bmain_l;
 
-
+/*
+* @Pre: menu is currently open
+* @Post: reload the page and back to the main menu
+*/
 var bmain_w = function Bmain_w(){ //need to update when add level part
   window.location.reload();
 }
