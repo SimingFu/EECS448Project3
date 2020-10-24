@@ -1,4 +1,8 @@
 class Aim {
+  /*
+  * @Pre: create the launch line
+  * @Post: initializes launch line
+  */
   constructor(startPos_x, startPos_y) {
     this.startPos = {
       x: startPos_x,
@@ -10,7 +14,7 @@ class Aim {
 
     this.endPos = {
       x: this.startPos.x,
-      y: this.startPos.y - this.length 
+      y: this.startPos.y - this.length
     }
 
     this.lineWidth = canvas.width*canvas.height*0.000004
@@ -40,6 +44,10 @@ class Aim {
     }
   }
 
+  /*
+  * @Pre: assumes launch line is initialized
+  * @Post: updates launch line in different angle
+  */
   update(startPos_x, startPos_y) {
     //this.color = updateColor() //TODO
     this.updateLine(startPos_x, startPos_y)
@@ -47,20 +55,32 @@ class Aim {
     //this.updateHead() //TODO
   }
 
+  /*
+  * @Pre: assumes launch line is initialized
+  * @Post: draw launch line on the ball
+  */
   draw() {
     this.drawLine()
     //this.drawHead()//TODO
   }
 
+  /*
+  * @Pre: assumes launch line is initialized
+  * @Post: updates launch vector
+  */
   updateLaunchVector() {
     this.updateAngle()
     this.launchVector.x = this.length*Math.cos(this.radians)
     this.launchVector.y = this.length*Math.sin(this.radians)
-    
+
     this.endPos.x = this.startPos.x + this.launchVector.x
     this.endPos.y = this.startPos.y - this.launchVector.y
   }
 
+  /*
+  * @Pre: assumes launch line is initialized
+  * @Post: updates angle for launching
+  */
   updateAngle() {
     if(this.radians > this.maxAngle) {
       this.clockwise = true
@@ -77,6 +97,10 @@ class Aim {
     this.radians = this.step*this.angularConst + this.minAngle
   }
 
+  /*
+  * @Pre: assumes launch line is initialized
+  * @Post: reset launch line
+  */
   updateLine(startPos_x, startPos_y) {
     this.startPos = {
       x: startPos_x,
@@ -90,11 +114,16 @@ class Aim {
 
   /*TODO
   updateHead() {
-    this.arrowHeadLeft.x = this.endPos.x +  
-         
+    this.arrowHeadLeft.x = this.endPos.x +
+
   }
   */
 
+
+  /*
+  * @Pre: assumes launch line is initialized
+  * @Post: draw launch line on the ball
+  */
   drawLine() {
     ctx.beginPath()
     ctx.lineWidth = this.lineWidth
