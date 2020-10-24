@@ -1,12 +1,18 @@
 class Brickset
 {
+    /*
+    * @Post Generates brickset object, which will be updated through the game loop
+      @Param rows: const value indicating how many rows of bricks to generate
+      @Param cols: const value indicating columns to generate
+      @Param spaced: bool value that decides if bricks are spaced out or clumped together 
+   */
     constructor(rows, cols, spaced)
     {
         this.rows = rows;
         this.cols = cols;
         this.brick_length = canvas.width / 15;
         this.brick_height = canvas.height / 25;
-        this.spacing = 0;
+        this.spacing = 1;
         if (spaced) this.spacing = this.brick_length / 4;
         this.bricks = []
 
@@ -23,7 +29,16 @@ class Brickset
             }
         }
     }
+
+
+    //@Post no effect, this class is skipped over in the game loop
     update() {}
+
+
+    /*
+    * @Pre brickset is generated 
+      @Post updates screen with each surviving brick
+    */
     draw()
     {
         for (let i = 0; i < this.bricks.length; i++)
@@ -34,6 +49,12 @@ class Brickset
             ctx.closePath();
         }
     }
+
+
+    /*
+    * @Post returns each brick to its original position
+    */
+
     resetBrick(){
       this.spacing = this.brick_length / 4;
       this.bricks = []

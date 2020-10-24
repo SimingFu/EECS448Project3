@@ -28,11 +28,19 @@ const OBJ_KEYS = {
 	PLAYERSTATUS: 3
 }
 
+/* 
+* @Pre: game is currently paused
+* @Post: game will be unpaused and menu will disappear
+*/
 var resume = function Resume()
 {
     paused = false;
 }
 
+/*
+* @Pre: user has selected this option in the menu
+* @Post: swaps color of background and objects
+*/
 var inv = function InvertColors()
 {
     let temp = page_color;
@@ -44,6 +52,11 @@ var inv = function InvertColors()
     ctx.fillStyle = object_color;
 }
 
+
+/*
+* @Pre: game objects have been created and user has selected to start game
+* @Post: updates and draws every game object while unpaused
+*/
 var ani = function animate() // main game loop occurs here
 {
     requestAnimationFrame(animate); // waits until this animate is done and then calls it again
@@ -85,6 +98,11 @@ var ani = function animate() // main game loop occurs here
 invertcolorBtn.onclick = inv;
 startBtn.onclick = ani; // start the loop
 
+
+/*
+* @Pre: gameobjects have already been created
+* @Post: returns all game objects to original status and position
+*/
 var reset = function gameRestart(){
 
 	ctx.clearRect(0, 0 , window.innerWidth, window.innerHeight); // clears the previous frame
@@ -101,24 +119,27 @@ var reset = function gameRestart(){
   lost = false;
 }
 nextBtn.onclick = reset;
-
 tryBtn.onclick = reset;
-tryBtn.addEventListener('click', () => {
-  reset;
-})
 
+/*
+* @Pre: menu is currently open
+* @Post: main menu will be hidden and settings menu will appear
+*/
 var opt = function Opt(){
   menu.style.display = 'none';
   setting.style.display = 'block';
 }
 optionBtn.onclick = opt;
 
+/*
+* @Pre: menu is currently open
+* @Post: settings menu will be hidden and main menu reappears, reverts Opt()
+*/
 var bak = function Bak(){
   menu.style.display = 'block';
   setting.style.display = 'none';
 }
 backBtn.onclick = bak;
-
 
 var bmain_l = function Bmain_l(){ //need to update when add level part
   window.location.reload();
