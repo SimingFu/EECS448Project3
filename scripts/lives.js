@@ -4,7 +4,7 @@ class Lives {
  * @constructor
  * @pre canvas and context must be declared
  * @post creates Lives object that updates and draws the player's current lives
- * @param currentLives: integer representing the current lives of the player
+ * @param {int} currentLives: integer representing the current lives of the player
  */
   constructor(currentLives) {
     this.currentLives = currentLives
@@ -21,7 +21,7 @@ class Lives {
  * Updates the current number of lives
  * @pre global 'lost' variable must be declared
  * @post 'lost' var set to true when all lives lost
- * @param currentLives: integer representing the current lives of the player
+ * @param {int} currentLives: integer representing the current lives of the player
  */
   update(currentLives) {
 
@@ -46,7 +46,7 @@ class Lives {
  * @pre canvas must be declared
  * @pre img html tag with id='img_life' must be defined with image file representing a life
  * @post lives array created with Life objects declared with position coordinates in upper left corner
- * @param currentLives: integer representing the current lives of the player
+ * @param {int} currentLives: integer representing the current lives of the player
  * @return lives: array of Life objects 
  */
   buildLives(currentLives) {
@@ -67,8 +67,8 @@ class Life {
  * Initializes the position of the lives to be displayed
  * @pre canvas and context must be declared
  * @post creates Life object with an initialized position, size, and image
- * @param position_x: integer representing x coordinate within canvas
- * @param position_y: integer representing y coordinate within canvas
+ * @param {int} position_x: integer representing x coordinate within canvas
+ * @param {int} position_y: integer representing y coordinate within canvas
  */
   constructor(position_x, position_y) {
 

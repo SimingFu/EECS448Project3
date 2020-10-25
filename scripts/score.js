@@ -4,8 +4,8 @@ class Score {
  * @constructor
  * @pre canvas must be declared
  * @post initializes player's score object
- * @param currentScore: integer value representing the player's current score
- * @param targetScore: integer value representing the score to earn the next life
+ * @param {int} currentScore: integer value representing the player's current score
+ * @param {int} targetScore: integer value representing the score to earn the next life
  */
   constructor(currentScore, targetScore) {
     this.currentScore = currentScore
@@ -23,8 +23,8 @@ class Score {
  * @pre gameObjects must be declared with PlayerStatus object
  * @post updates the position of the score on canvas
  * @post if current score equals targetScore, then doubles the target score and adds 1 life
- * @param currentScore: integer value representing the player's current score
- * @param targetScore: integer value representing the score to earn the next life
+ * @param {int} currentScore: integer value representing the player's current score
+ * @param {int} targetScore: integer value representing the score to earn the next life
  */
   update(currentScore, targetScore) {
     this.position = {

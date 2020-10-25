@@ -4,7 +4,7 @@ class PlayerStatus {
  * @constructor
  * @pre canvas and context must be declared
  * @post constructs PlayerStatus object with Lives and Score objects as data members
- * @param targetScore: integer representing the max score for a level
+ * @param {int} targetScore: integer representing the max score for a level
  */
   constructor(targetScore) {
 

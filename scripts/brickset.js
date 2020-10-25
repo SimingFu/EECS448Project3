@@ -4,9 +4,9 @@ class Brickset
      * Creates the set of bricks to be displayed
      * @constructor
      * @Post Generates brickset object, which will be updated through the game loop
-     * @Param rows: const value indicating how many rows of bricks to generate
-     * @Param cols: const value indicating columns to generate
-     * @Param spaced: bool value that decides if bricks are spaced out or clumped together 
+     * @param {int} rows: const value indicating how many rows of bricks to generate
+     * @param {int} cols: const value indicating columns to generate
+     * @param spaced: bool value that decides if bricks are spaced out or clumped together 
      */
     constructor(rows, cols, spaced)
     {
