@@ -19,6 +19,9 @@ class Paddle // the thing the player controls
     */
     update()
     {
+        this.width = PADDLE_WIDTH; // width of paddle
+        this.height = PADDLE_HEIGHT; // height of paddle
+        this.y = canvas.height - this.height; // initial y position
         if (mouse.x != undefined) 
         {
             this.x = Math.min(Math.max(mouse.x - (this.width / 2), 0), canvas.width - this.width); // move paddle based on mouse position if it is defined (it is undefined until it moves)

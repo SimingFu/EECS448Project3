@@ -2,17 +2,19 @@
 let page_color = "#FFFFFF";
 let object_color = "#000000";
 
-const BRICK_ROWS = 5;
-const BRICK_COLS = 8;
-const PADDLE_WIDTH = canvas.width / 6;
-const PADDLE_HEIGHT = canvas.height / 30;
+const BRICK_ROWS = 6;
+const BRICK_COLS = 6;
+const TOTAL_BRICKS = BRICK_ROWS * BRICK_COLS;
+
+let PADDLE_WIDTH = canvas.width / 6;
+let PADDLE_HEIGHT = canvas.height / 30;
 
 let totalBricks = BRICK_ROWS * BRICK_COLS; // Keeps track of total number of bricks
 let numCurrentBricks = totalBricks; // Initialize to whatever the initial number of bricks is
 let gameObjects = [] // array to iterate through during game loop
 let paddle = new Paddle(); // instantiate paddle
 let ball = new Ball(); // instantiate ball
-let brickset = new Brickset(BRICK_ROWS, BRICK_COLS, true); //instantiate brickset with number of rows and columns of bricks
+let brickset = new Brickset(BRICK_ROWS, BRICK_COLS, false); //instantiate brickset with number of rows and columns of bricks
 let targetScore = Math.floor(brickset.bricks.length/4)
 let playerStatus = new PlayerStatus(targetScore)
 
@@ -60,12 +62,15 @@ var inv = function InvertColors()
 var ani = function animate() // main game loop occurs here
 {
     requestAnimationFrame(animate); // waits until this animate is done and then calls it again
-    if (!paused & !lost & gameObjects[2].bricks.length > 0)
+    if (!paused & !lost & playerStatus.currentScore < TOTAL_BRICKS)
     {
         menu.style.display = 'none';
         setting.style.display = 'none';
         win.style.display = 'none';
         lose.style.display = 'none';
+
+        PADDLE_WIDTH = canvas.width / 6;
+        PADDLE_HEIGHT = canvas.height / 30;   
 
         ctx.clearRect(0, 0 , window.innerWidth, window.innerHeight); // clears the previous frame
         ctx.fillStyle = page_color;
