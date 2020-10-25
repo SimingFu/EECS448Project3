@@ -4,8 +4,10 @@ let object_color = "#000000";
 
 const BRICK_ROWS = 5;
 const BRICK_COLS = 8;
-const PADDLE_WIDTH = canvas.width / 6;
-const PADDLE_HEIGHT = canvas.height / 30;
+const TOTAL_BRICKS = BRICK_ROWS * BRICK_COLS;
+
+let PADDLE_WIDTH = canvas.width / 6;
+let PADDLE_HEIGHT = canvas.height / 30;
 
 let totalBricks = BRICK_ROWS * BRICK_COLS; // Keeps track of total number of bricks
 let numCurrentBricks = totalBricks; // Initialize to whatever the initial number of bricks is
@@ -63,12 +65,12 @@ var inv = function InvertColors()
 var ani = function animate() // main game loop occurs here
 {
     requestAnimationFrame(animate); // waits until this animate is done and then calls it again
-    if (!paused & !lost & gameObjects[2].bricks.length > 0)
+    if (!paused & !lost & playerStatus.currentScore < TOTAL_BRICKS)
     {
         menu.style.display = 'none';
         setting.style.display = 'none';
         win.style.display = 'none';
-        lose.style.display = 'none';
+        lose.style.display = 'none';  
 
         ctx.clearRect(0, 0 , window.innerWidth, window.innerHeight); // clears the previous frame
         ctx.fillStyle = page_color;
@@ -117,7 +119,6 @@ var reset = function gameRestart(){
 	for (let i = 0; i < gameObjects.length; i++) // iterate through game objects
 	{
 		gameObjects[i].update(); // call update on each object
-
 		gameObjects[i].draw();
   }
   lost = false;
@@ -166,3 +167,24 @@ var bmain_w = function Bmain_w(){ //need to update when add level part
   window.location.reload();
 }
 backmainBtn_w.onclick = bmain_w;
+
+/*
+* @Pre: the window size has been changed
+* @Post: updates the canvas to correspond with the window size
+*/
+window.addEventListener('resize', () => // if the user shrinks/expands their browser, the canvas will update accordingly
+{
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    PADDLE_WIDTH = canvas.width / 6;
+    PADDLE_HEIGHT = canvas.height / 30; 
+
+    if (gameObjects.length > 0) // if the objects have been created
+    {
+      for (let i = 0; i < gameObjects.length - 1; i++) // iterate through game objects
+      {
+        gameObjects[i].resize();
+      }
+    }
+    
+});

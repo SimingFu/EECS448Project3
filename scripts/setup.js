@@ -67,13 +67,3 @@ window.addEventListener('mousemove', // window will call this function every tim
     }
 );
 
-/**
- * Resizes screen based on how user sets it
- * @Pre the window size has been changed
- * @Post updates the canvas to correspond with the window size
- */
-window.addEventListener('resize', () => // if the user shrinks/expands their browser, the canvas will update accordingly
-{
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-});
