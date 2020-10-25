@@ -1,7 +1,9 @@
 class Score {
-/*
- * @pre: canvas must be declared
- * @post: initializes player's score object
+/**
+ * Initializes the score object
+ * @constructor
+ * @pre canvas must be declared
+ * @post initializes player's score object
  * @param currentScore: integer value representing the player's current score
  * @param targetScore: integer value representing the score to earn the next life
  */
@@ -16,10 +18,11 @@ class Score {
     this.fontSize = canvas.height*canvas.width*0.00004
   }
 
-/*
- * @pre: gameObjects must be declared with PlayerStatus object
- * @post: updates the position of the score on canvas
- * @post: if current score equals targetScore, then doubles the target score and adds 1 life
+/**
+ * Updates the current score and target score required to get a new life
+ * @pre gameObjects must be declared with PlayerStatus object
+ * @post updates the position of the score on canvas
+ * @post if current score equals targetScore, then doubles the target score and adds 1 life
  * @param currentScore: integer value representing the player's current score
  * @param targetScore: integer value representing the score to earn the next life
  */
@@ -38,9 +41,10 @@ class Score {
     }
   }
 
-/*
- * @pre: context must be declared
- * @post: draws the current score at upper-left corner of canvas
+/**
+ * Draws the score on the screen
+ * @pre context must be declared
+ * @post draws the current score at upper-left corner of canvas
  */
   draw() {
     ctx.font = this.fontSize + 'px serif'

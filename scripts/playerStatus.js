@@ -1,7 +1,9 @@
 class PlayerStatus {
-/*
- * @pre: canvas and context must be declared
- * @post: constructs PlayerStatus object with Lives and Score objects as data members
+/**
+ * Initializes the Playerstatus object
+ * @constructor
+ * @pre canvas and context must be declared
+ * @post constructs PlayerStatus object with Lives and Score objects as data members
  * @param targetScore: integer representing the max score for a level
  */
   constructor(targetScore) {
@@ -18,26 +20,29 @@ class PlayerStatus {
     this.statusObjects = [this.playerLives, this.playerScore]
   }
 
-/*
- * @pre: canvas must be declared
- * @post: updates the playerLives and playerScore objects with current in-game values
+/**
+ * Updates the player's lives and their score
+ * @pre canvas must be declared
+ * @post updates the playerLives and playerScore objects with current in-game values
  */
   update() {
     this.playerLives.update(this.currentLives)
     this.playerScore.update(this.currentScore, this.targetScore)
   }
 
-/*
- * @pre: context must be declared
- * @post: draws the player's lives and score at top corners of screen
+/**
+ * Draws the players lives and score at the respective corners of the screen
+ * @pre context must be declared
+ * @post draws the player's lives and score at top corners of screen
  */
   draw() {
     this.statusObjects.forEach(obj => obj.draw())
   }
 
-/*
- * @pre: canvas must be declared
- * @post: resets the players Lives and Score objects
+/**
+ * Resets the player to have 3 lives and 0 score
+ * @pre canvas must be declared
+ * @post resets the players Lives and Score objects
  */
   resetStatus(){
     this.currentLives = 3

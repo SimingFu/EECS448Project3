@@ -28,19 +28,21 @@ const OBJ_KEYS = {
 	PLAYERSTATUS: 3
 }
 
-/*
-* @Pre: game is currently paused
-* @Post: game will be unpaused and menu will disappear
-*/
+/**
+ * Resumes game from paused state
+ * @Pre game is currently paused
+ * @Post game will be unpaused and menu will disappear
+ */
 var resume = function Resume()
 {
     paused = false;
 }
 
-/*
-* @Pre: user has selected this option in the menu
-* @Post: swaps color of background and objects
-*/
+/**
+ * Inverts colors of game
+ * @Pre user has selected this option in the menu
+ * @Post swaps color of background and objects
+ */
 var inv = function InvertColors()
 {
     let temp = page_color;
@@ -53,10 +55,11 @@ var inv = function InvertColors()
 }
 
 
-/*
-* @Pre: game objects have been created and user has selected to start game
-* @Post: updates and draws every game object while unpaused
-*/
+/**
+ * Animates game on screen
+ * @Pre game objects have been created and user has selected to start game
+ * @Post updates and draws every game object while unpaused
+ */
 var ani = function animate() // main game loop occurs here
 {
     requestAnimationFrame(animate); // waits until this animate is done and then calls it again
@@ -99,10 +102,11 @@ invertcolorBtn.onclick = inv;
 startBtn.onclick = ani; // start the loop
 
 
-/*
-* @Pre: gameobjects have already been created
-* @Post: returns all game objects to original status and position
-*/
+/**
+ * Resets the game
+ * @Pre gameobjects have already been created
+ * @Post returns all game objects to original status and position
+ */
 var reset = function gameRestart(){
 
 	ctx.clearRect(0, 0 , window.innerWidth, window.innerHeight); // clears the previous frame
@@ -121,39 +125,43 @@ var reset = function gameRestart(){
 nextBtn.onclick = reset;
 tryBtn.onclick = reset;
 
-/*
-* @Pre: menu is currently open
-* @Post: main menu will be hidden and settings menu will appear
-*/
+/**
+ * Opens option menu
+ * @Pre menu is currently open
+ * @Post main menu will be hidden and settings menu will appear
+ */
 var opt = function Opt(){
   menu.style.display = 'none';
   setting.style.display = 'block';
 }
 optionBtn.onclick = opt;
 
-/*
-* @Pre: menu is currently open
-* @Post: settings menu will be hidden and main menu reappears, reverts Opt()
-*/
+/**
+ * Closes options menu
+ * @Pre menu is currently open
+ * @Post settings menu will be hidden and main menu reappears, reverts Opt()
+ */
 var bak = function Bak(){
   menu.style.display = 'block';
   setting.style.display = 'none';
 }
 backBtn.onclick = bak;
 
-/*
-* @Pre: menu is currently open
-* @Post: reload the page and back to the main menu
-*/
+/**
+ * Reloads page back to main menu
+ * @Pre menu is currently open
+ * @Post reload the page and back to the main menu
+ */
 var bmain_l = function Bmain_l(){ //need to update when add level part
   window.location.reload();
 }
 backmainBtn_l.onclick = bmain_l;
 
-/*
-* @Pre: menu is currently open
-* @Post: reload the page and back to the main menu
-*/
+/**
+ * Reloads window back to main menu
+ * @Pre menu is currently open
+ * @Post reload the page and back to the main menu
+ */
 var bmain_w = function Bmain_w(){ //need to update when add level part
   window.location.reload();
 }

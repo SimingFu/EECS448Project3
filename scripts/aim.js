@@ -1,8 +1,10 @@
 class Aim {
-  /*
-  * @Pre: create the launch line
-  * @Post: initializes launch line
-  */
+  /**
+   * Aim class is what moves at the bottom of the screen before launching the ball. It creates and initializes the launch line.
+   * @Pre create the launch line
+   * @Post initializes launch line
+   * @constructor
+   */
   constructor(startPos_x, startPos_y) {
     this.startPos = {
       x: startPos_x,
@@ -44,10 +46,13 @@ class Aim {
     }
   }
 
-  /*
-  * @Pre: assumes launch line is initialized
-  * @Post: updates launch line in different angle
-  */
+  /**
+   * Updates the launch line in different angle
+   * @param {int} startPos_x - Starting position in x
+   * @param {int} startPos_y - Starting position in y
+   * @Pre assumes launch line is initialized
+   * @Post updates launch line in different angle
+   */
   update(startPos_x, startPos_y) {
     //this.color = updateColor() //TODO
     this.updateLine(startPos_x, startPos_y)
@@ -55,18 +60,20 @@ class Aim {
     //this.updateHead() //TODO
   }
 
-  /*
-  * @Pre: assumes launch line is initialized
-  * @Post: draw launch line on the ball
-  */
+  /**
+   * Draws the line on the ball
+   * @Pre assumes launch line is initialized
+   * @Post draw launch line on the ball
+   */
   draw() {
     this.drawLine()
     //this.drawHead()//TODO
   }
 
-  /*
-  * @Pre: assumes launch line is initialized
-  * @Post: updates launch vector
+  /**
+   * Updates the launch vector
+   * @Pre assumes launch line is initialized
+   * @Post updates launch vector
   */
   updateLaunchVector() {
     this.updateAngle()
@@ -77,10 +84,11 @@ class Aim {
     this.endPos.y = this.startPos.y - this.launchVector.y
   }
 
-  /*
-  * @Pre: assumes launch line is initialized
-  * @Post: updates angle for launching
-  */
+  /**
+   * Updates the angle the ball will launch at
+   * @Pre assumes launch line is initialized
+   * @Post updates angle for launching
+   */
   updateAngle() {
     if(this.radians > this.maxAngle) {
       this.clockwise = true
@@ -97,10 +105,13 @@ class Aim {
     this.radians = this.step*this.angularConst + this.minAngle
   }
 
-  /*
-  * @Pre: assumes launch line is initialized
-  * @Post: reset launch line
-  */
+  /**
+   * Resets the launch line
+   * @param {int} startPos_x - starting position x
+   * @param {int} startPos_y - starting position y
+   * @Pre assumes launch line is initialized
+   * @Post reset launch line
+   */
   updateLine(startPos_x, startPos_y) {
     this.startPos = {
       x: startPos_x,
@@ -120,10 +131,11 @@ class Aim {
   */
 
 
-  /*
-  * @Pre: assumes launch line is initialized
-  * @Post: draw launch line on the ball
-  */
+  /**
+   * Draws the aim line on the screen
+   * @Pre assumes launch line is initialized
+   * @Post draw launch line on the ball
+   */
   drawLine() {
     ctx.beginPath()
     ctx.lineWidth = this.lineWidth

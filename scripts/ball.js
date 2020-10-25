@@ -1,8 +1,10 @@
 class Ball
 {
-    /*
-    * @Post: initializes ball object
-    */
+    /**
+     * Class that initializes the ball object 
+     * @Post initializes ball object
+     * @constructor
+     */
     constructor()
     {
         this.radius = canvas.height / 40; // radius of ball dependent on screen size
@@ -16,10 +18,11 @@ class Ball
         this.arrowAim = new Aim(this.start_x, this.start_y);
     }
 
-    /*
-    * @Pre: assumes ball is initialized
-    * @Post: updates balls position, and velocity
-    */
+    /**
+     * Updates the ball objects position and velocity
+     * @Pre assumes ball is initialized
+     * @Post updates balls position, and velocity
+     */
     update()
     {
         if (simulate_ball)
@@ -42,10 +45,11 @@ class Ball
         }
     }
 
-    /*
-    * @Pre: assumes paddle and ball are initialized
-    * @Post: puts ball on the paddle to start game for initial aim and launch
-    */
+    /**
+     * Locks the ball to the paddle on bottom of screen, assuming they are initialized
+     * @Pre assumes paddle and ball are initialized
+     * @Post puts ball on the paddle to start game for initial aim and launch
+     */
     lock_to_paddle()
     {
         this.y = this.start_y;
@@ -55,10 +59,11 @@ class Ball
         this.vel.y *= -1;
     }
 
-    /*
-    * @Pre: ball is initialized
-    * @Post: draws the ball on the screen based on location
-    */
+    /**
+     * Draws the ball on the screen based on location
+     * @Pre ball is initialized
+     * @Post draws the ball on the screen based on location
+     */
     draw()
     {
         ctx.beginPath(); // begin drawing new shape
@@ -71,12 +76,15 @@ class Ball
         }
     }
 
-    /*
-    * @Pre: assumes ball is initialized
-    * @Post: checks for collisions against the paddle and the bricks
-    * @Param: paddle: Object the user controls that the ball bounces off of. 
-    *         brickset: set of bricks that the ball will bounce off of.
-    */
+    /**
+     * Function to detect collision
+     * @param {paddle} paddle - paddle on bottom of the screen
+     * @param {brickset} brickset - set of bricks to detect collisions with
+     * @Pre assumes ball is initialized
+     * @Post checks for collisions against the paddle and the bricks
+     * @Param: paddle: Object the user controls that the ball bounces off of. 
+     *         brickset: set of bricks that the ball will bounce off of.
+     */
     detect_collisions(paddle, brickset)
     {
         let y = this.y;
@@ -131,10 +139,11 @@ class Ball
         }
     }
 
-    /*
-    * @Pre: assumes ball is initialized
-    * @Post: resets ball to initial velocity
-    */
+    /**
+     * Resets the ball to initialize position
+     * @Pre assumes ball is initialized
+     * @Post resets ball to initial velocity
+     */
     resetBall() {
       simulate_ball = false
       this.vel = {x: 4, y: 8}
