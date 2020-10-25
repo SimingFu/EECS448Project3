@@ -11,9 +11,9 @@ class Ball
         this.start_y = canvas.height - PADDLE_HEIGHT - this.radius - 1; // 1 pixel above paddle to avoid collision
         this.x = this.start_x;
         this.y = this.start_y;
-        this.vel = {x: 4, y: 8} // initial velocities
+        this.vel = {x: 0, y: 0} // initial velocities
         simulate_ball = false
-        this.unit_vector = Math.sqrt(canvas.height**2 + canvas.width **2) / 225;
+        this.unit_vector = Math.sqrt(canvas.height**2 + canvas.width **2) / 200;
         this.arrowAim = new Aim(this.start_x, this.start_y);
     }
 
@@ -23,10 +23,6 @@ class Ball
     */
     update()
     {
-        this.radius = canvas.height / 40; // radius of ball dependent on screen size
-        this.unit_vector = canvas.height / 100;
-        this.unit_vector = Math.sqrt(canvas.height**2 + canvas.width **2) / 225;
-        console.log(canvas.width, canvas.height);
         if (simulate_ball)
         {
             let velocity_scale = this.unit_vector * (1 / (Math.sqrt(this.vel.x**2 + this.vel.y**2)));
@@ -149,7 +145,13 @@ class Ball
     */
     resetBall() {
       simulate_ball = false
-      this.vel = {x: 4, y: 8}
+      this.vel = {x: 0, y: 0}
+    }
+
+    resize()
+    {
+        this.radius = canvas.height / 40; // radius of ball dependent on screen size
+        this.unit_vector = Math.sqrt(canvas.height**2 + canvas.width **2) / 200;
     }
 }
 
