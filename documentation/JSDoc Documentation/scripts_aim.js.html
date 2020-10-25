@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: scripts/aim.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: scripts/aim.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>class Aim {
+  /**
+   * Aim class is what moves at the bottom of the screen before launching the ball. It creates and initializes the launch line.
+   * @Pre create the launch line
+   * @Post initializes launch line
+   * @constructor
+   */
+  constructor(startPos_x, startPos_y) {
+    this.startPos = {
+      x: startPos_x,
+      y: startPos_y
+    }
+
+    this.length = canvas.width*canvas.height*0.00004
+    this.color = '#ff0000'//'#00ddff'
+
+    this.endPos = {
+      x: this.startPos.x,
+      y: this.startPos.y - this.length
+    }
+
+    this.lineWidth = canvas.width*canvas.height*0.000004
+
+    this.launchVector = {
+      x: 0,
+      y: 0
+    }
+
+    this.step = 0
+    this.angularConst = 0.05
+    this.minAngle = Math.PI/12
+    this.maxAngle = 11*Math.PI/12
+    this.radians = this.minAngle
+    this.clockwise = false
+
+    this.arrowHeadLeft = {
+      x: 0,
+      y: 0,
+      length: this.length*0.25
+    }
+
+    this.arrowHeadRight = {
+      x: 0,
+      y: 0,
+      length: this.length*0.25
+    }
+  }
+
+  /**
+   * Updates the launch line in different angle
+   * @param {int} startPos_x - Starting position in x
+   * @param {int} startPos_y - Starting position in y
+   * @Pre assumes launch line is initialized
+   * @Post updates launch line in different angle
+   */
+  update(startPos_x, startPos_y) {
+    //this.color = updateColor() //TODO
+    this.updateLine(startPos_x, startPos_y)
+    this.updateLaunchVector()
+    //this.updateHead() //TODO
+  }
+
+  /**
+   * Draws the line on the ball
+   * @Pre assumes launch line is initialized
+   * @Post draw launch line on the ball
+   */
+  draw() {
+    this.drawLine()
+    //this.drawHead()//TODO
+  }
+
+  /**
+   * Updates the launch vector
+   * @Pre assumes launch line is initialized
+   * @Post updates launch vector
+  */
+  updateLaunchVector() {
+    this.updateAngle()
+    this.launchVector.x = this.length*Math.cos(this.radians)
+    this.launchVector.y = this.length*Math.sin(this.radians)
+
+    this.endPos.x = this.startPos.x + this.launchVector.x
+    this.endPos.y = this.startPos.y - this.launchVector.y
+  }
+
+  /**
+   * Updates the angle the ball will launch at
+   * @Pre assumes launch line is initialized
+   * @Post updates angle for launching
+   */
+  updateAngle() {
+    if(this.radians > this.maxAngle) {
+      this.clockwise = true
+    } else if (this.radians &lt; this.minAngle){
+      this.clockwise = false
+    }
+
+    if(this.clockwise) {
+      this.step--
+    } else {
+      this.step++
+    }
+
+    this.radians = this.step*this.angularConst + this.minAngle
+  }
+
+  /**
+   * Resets the launch line
+   * @param {int} startPos_x - starting position x
+   * @param {int} startPos_y - starting position y
+   * @Pre assumes launch line is initialized
+   * @Post reset launch line
+   */
+  updateLine(startPos_x, startPos_y) {
+    this.startPos = {
+      x: startPos_x,
+      y: startPos_y
+    }
+
+    this.length = canvas.width*canvas.height*0.00004
+
+    this.lineWidth = canvas.width*canvas.height*0.000004
+  }
+
+  /*TODO
+  updateHead() {
+    this.arrowHeadLeft.x = this.endPos.x +
+
+  }
+  */
+
+
+  /**
+   * Draws the aim line on the screen
+   * @Pre assumes launch line is initialized
+   * @Post draw launch line on the ball
+   */
+  drawLine() {
+    ctx.beginPath()
+    ctx.lineWidth = this.lineWidth
+    ctx.strokeStyle = this.color
+    ctx.lineCap = 'round'
+    ctx.moveTo(this.startPos.x, this.startPos.y)
+    ctx.lineTo(this.endPos.x, this.endPos.y)
+    ctx.stroke()
+    ctx.closePath()
+  }
+
+/*
+  drawHead() {
+    let scale = 0.25
+    let leftLine = {
+      x: this.endPos.x - this.length*scale,
+      y: this.endPos.y + this.length*scale
+    }
+
+    let rightLine = {
+      x: this.endPos.x + this.length*scale,
+      y: this.endPos.y + this.length*scale
+    }
+
+    ctx.beginPath()
+    ctx.lineWidth = this.lineWidth
+    ctx.strokeStyle = this.color
+    ctx.lineCap = 'round'
+    ctx.lineJoin = 'round'
+    ctx.moveTo(this.endPos.x, this.endPos.y)
+    ctx.lineTo(leftLine.x, leftLine.y)
+    ctx.moveTo(this.endPos.x, this.endPos.y)
+    ctx.lineTo(rightLine.x, rightLine.y)
+    ctx.stroke()
+    ctx.closePath()
+  }
+*/
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Aim.html">Aim</a></li><li><a href="Ball.html">Ball</a></li><li><a href="Brickset.html">Brickset</a></li><li><a href="Life.html">Life</a></li><li><a href="Lives.html">Lives</a></li><li><a href="Paddle.html">Paddle</a></li><li><a href="PlayerStatus.html">PlayerStatus</a></li><li><a href="Score.html">Score</a></li></ul><h3>Global</h3><ul><li><a href="global.html#ani">ani</a></li><li><a href="global.html#bak">bak</a></li><li><a href="global.html#bmain_l">bmain_l</a></li><li><a href="global.html#bmain_w">bmain_w</a></li><li><a href="global.html#inv">inv</a></li><li><a href="global.html#opt">opt</a></li><li><a href="global.html#reset">reset</a></li><li><a href="global.html#resume">resume</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sun Oct 25 2020 15:48:53 GMT-0500 (Central Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
