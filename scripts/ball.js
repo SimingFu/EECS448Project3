@@ -1,6 +1,5 @@
 class Ball
 {
-
     /*
     * @Post: initializes ball object
     */

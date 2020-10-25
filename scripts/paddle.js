@@ -1,6 +1,5 @@
 class Paddle // the thing the player controls
 {
-
     /*
     * @Pre: creates a paddle object
     * @Post: initializes to middle of screen and sets height and width
