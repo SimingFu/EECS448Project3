@@ -46,6 +46,12 @@ class Paddle // the thing the player controls
       this.x = canvas.width / 2;  // initial x position
       this.y = canvas.height - this.height; // initial y position
     }
+
+
+    /*
+    * @Pre: The window has been resized, and an event listener has called this method
+    * @Post: The paddle's size and y-position will be updated to correspond with the new window size
+    */
     resize()
     {
         this.width = PADDLE_WIDTH; // width of paddle
