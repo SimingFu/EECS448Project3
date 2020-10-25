@@ -135,6 +135,7 @@ class Aim {
     ctx.closePath()
   }
 
+/*
   drawHead() {
     let scale = 0.25
     let leftLine = {
@@ -159,4 +160,5 @@ class Aim {
     ctx.stroke()
     ctx.closePath()
   }
+*/
 }
