@@ -87,7 +87,7 @@ class Brickset
     {
         this.brick_length = canvas.width / 15;
         this.brick_height = canvas.height / 25;
-
+        if (this.spacing > 1) this.spacing = this.brick_length / 4;
         let row_length = (this.cols * this.brick_length) + ((this.cols - 1) * this.spacing);
         let starting_x_pos = (canvas.width - row_length) / 2;
         let starting_y_pos = canvas.height / 8;
